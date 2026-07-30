@@ -11,4 +11,7 @@ void homeMenu(void);
 //Displays the Sorting Menu
 void sortingMenu(void);
 
+//Displays the Searching Menu
+void searchingMenu(void);
+
 #endif

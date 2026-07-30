@@ -70,11 +70,12 @@ void runApplication(void){
 
                         case 0:
                             goto HOME_MENU;
-                            
+
                         default:
                             printf("\n");
                             printf(COLOR_ERROR);
                             printf("Invalid Choice!\n");
+                            printf(COLOR_RESET);
                     }
 
                     printf(COLOR_RESET);
@@ -86,11 +87,80 @@ void runApplication(void){
                     getchar();
                 }
             }
-            case 2:
-                printf(COLOR_SUCCESS);
-                printf("\nSearching Menu Coming Soon!\n");
-                printf(COLOR_RESET);
-                break;
+            break;
+
+            case 2:{
+                int searchingChoice;
+
+                while (1){
+                    #ifdef _WIN32
+                        system("cls");
+                    #else
+                        system("clear");
+                    #endif
+
+                    searchingMenu();
+
+                    scanf("%d", &searchingChoice);
+                    getchar();
+
+                    switch (searchingChoice){
+                        case 1:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Linear Search page coming soon!\n");
+                            break;
+
+                        case 2:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Binary Search page coming soon!\n");
+                            break;
+
+                        case 3:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Jump Search page coming soon!\n");
+                            break;
+
+                        case 4:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Binary Search Tree page coming soon!\n");
+                            break;
+
+                        case 5:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Depth First Search page coming soon!\n");
+                            break;
+
+                        case 6:
+                            printf("\n");
+                            printf(COLOR_SUCCESS);
+                            printf("Breadth First Search page coming soon!\n");
+                            break;
+
+                        case 0:
+                            goto HOME_MENU;
+                            
+                        default:
+                            printf("\n");
+                            printf(COLOR_ERROR);
+                            printf("Invalid Choice!\n");
+                            printf(COLOR_RESET);
+                    }
+
+                    printf(COLOR_RESET);
+
+                    printf(COLOR_PROMPT);
+                    printf("\n\nPress ENTER to continue...");
+                    printf(COLOR_RESET);
+
+                    getchar();
+                }
+            }
+            break;
 
             case 3:
                 printf(COLOR_SUCCESS);
