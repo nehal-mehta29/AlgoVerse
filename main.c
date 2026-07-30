@@ -1,16 +1,10 @@
-#include <stdio.h>
-
 #include "ui.h"
-#include "menu.h"
+#include "controller.h"
 
 int main(void){
-    int choice;
-
     splashScreen();
 
-    homeMenu();
-
-    scanf("%d", &choice);
+    runApplication();
 
     return 0;
 }
