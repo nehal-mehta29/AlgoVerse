@@ -2,6 +2,7 @@
 
 #include "../include/ui.h"
 #include "../include/colors.h"
+#include "utils.h"
 
 /*==========================================================
                     Splash Screen

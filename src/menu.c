@@ -2,6 +2,7 @@
 
 #include "menu.h"
 #include "colors.h"
+#include "utils.h"
 
 /*==========================================================
                         Home Menu

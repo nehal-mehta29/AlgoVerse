@@ -4,6 +4,13 @@
 #include "controller.h"
 #include "menu.h"
 #include "colors.h"
+#include "utils.h"
+
+#include "sorting/bubble.h"
+#include "sorting/insertion.h"
+#include "sorting/merge.h"
+#include "sorting/quick.h"
+#include "sorting/selection.h"
 
 void runApplication(void){
     int choice;
@@ -31,33 +38,23 @@ void runApplication(void){
 
                     switch (sortingChoice){
                         case 1:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Bubble Sort page coming soon!\n");
+                            bubblePage();
                             break;
 
                         case 2:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Selection Sort page coming soon!\n");
+                            selectionPage();
                             break;
 
                         case 3:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Insertion Sort page coming soon!\n");
+                           insertionPage();
                             break;
 
                         case 4:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Merge Sort page coming soon!\n");
+                            mergePage();
                             break;
 
                         case 5:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Quick Sort page coming soon!\n");
+                            quickPage();
                             break;
 
                         case 0:
