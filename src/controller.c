@@ -19,6 +19,8 @@
 #include "searching/dfs.h"
 #include "searching/bfs.h"
 
+#include "about.h"
+
 void runApplication(void){
     int choice;
 
@@ -135,9 +137,7 @@ void runApplication(void){
             break;
 
             case 3:
-                printf(COLOR_SUCCESS);
-                printf("\nAbout Page Coming Soon!\n");
-                printf(COLOR_RESET);
+                aboutPage();
                 break;
 
             case 0:
