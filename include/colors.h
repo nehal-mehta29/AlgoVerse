@@ -41,4 +41,21 @@
 /* Reserved for future badges/highlights */
 #define COLOR_ACCENT       "\033[38;2;230;184;162m"   // Dusty Rose (#E6B8A2)
 
+//========== Visualization Colors ==========
+
+/* Current Node Being Processed */
+#define COLOR_CURRENT      "\033[38;2;255;214;102m"   // Soft Gold
+
+/* Swapped / Relinked Node */
+#define COLOR_ACTIVE       "\033[38;2;129;178;154m"   // Same as Success (Sage Green)
+
+/* Broken Link Marker */
+#define COLOR_BREAK        "\033[31m"                 // Standard Red
+
+/* Pointer / Address Highlight */
+#define COLOR_POINTER      "\033[38;2;173;216;230m"   // Soft Sky Blue
+
+/* Final Sorted Elements */
+#define COLOR_SORTED       "\033[38;2;216;180;248m"   // Lilac Bloom
+
 #endif /* COLORS_H */
