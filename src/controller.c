@@ -7,10 +7,17 @@
 #include "utils.h"
 
 #include "sorting/bubble.h"
+#include "sorting/selection.h"
 #include "sorting/insertion.h"
 #include "sorting/merge.h"
 #include "sorting/quick.h"
-#include "sorting/selection.h"
+
+#include "searching/linear.h"
+#include "searching/binary.h"
+#include "searching/jump.h"
+#include "searching/bst.h"
+#include "searching/dfs.h"
+#include "searching/bfs.h"
 
 void runApplication(void){
     int choice;
@@ -87,39 +94,27 @@ void runApplication(void){
 
                     switch (searchingChoice){
                         case 1:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Linear Search page coming soon!\n");
+                            linearPage();
                             break;
 
                         case 2:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Binary Search page coming soon!\n");
+                            binaryPage();
                             break;
 
                         case 3:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Jump Search page coming soon!\n");
+                            jumpPage();
                             break;
 
                         case 4:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Binary Search Tree page coming soon!\n");
+                            bstPage();
                             break;
 
                         case 5:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Depth First Search page coming soon!\n");
+                            dfsPage();
                             break;
 
                         case 6:
-                            printf("\n");
-                            printf(COLOR_SUCCESS);
-                            printf("Breadth First Search page coming soon!\n");
+                            bfsPage();
                             break;
 
                         case 0:
