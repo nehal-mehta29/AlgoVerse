@@ -33,9 +33,5 @@ void splashScreen(void){
 
     printf("\n\n");
 
-    printf(COLOR_PROMPT);
-    printf("Press ENTER to continue...");
-    printf(COLOR_RESET);
-
-    getchar();
+    pauseScreen();
 }

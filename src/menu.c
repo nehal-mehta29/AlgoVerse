@@ -8,9 +8,7 @@
 ==========================================================*/
 
 void homeMenu(void){
-    printf(COLOR_BREADCRUMB);
-    printf("Home\n");
-    printf(COLOR_RESET);
+    printBreadcrumb("Home");
 
     printf(COLOR_BORDER);
     printf("------------------------------------------------------------\n");
@@ -54,9 +52,7 @@ void homeMenu(void){
 ==========================================================*/
 
 void sortingMenu(void){
-    printf(COLOR_BREADCRUMB);
-    printf("Home > Sorting Algorithms\n");
-    printf(COLOR_RESET);
+    printBreadcrumb("Home > Sorting Algorithms");
 
     printf(COLOR_BORDER);
     printf("------------------------------------------------------------\n");
@@ -112,9 +108,7 @@ void sortingMenu(void){
 ==========================================================*/
 
 void searchingMenu(void){
-    printf(COLOR_BREADCRUMB);
-    printf("Home > Searching Algorithms\n");
-    printf(COLOR_RESET);
+    printBreadcrumb("Home > Sorting Algorithms");
 
     printf(COLOR_BORDER);
     printf("------------------------------------------------------------\n");

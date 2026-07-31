@@ -10,11 +10,7 @@ void runApplication(void){
 
     while (1){
         HOME_MENU:
-        #ifdef _WIN32
-                system("cls");
-        #else
-                system("clear");
-        #endif
+        clearScreen();
 
         homeMenu();
 
@@ -26,11 +22,7 @@ void runApplication(void){
                 int sortingChoice;
 
                 while (1){
-                    #ifdef _WIN32
-                        system("cls");
-                    #else
-                        system("clear");
-                    #endif
+                    clearScreen();
 
                     sortingMenu();
 
@@ -80,11 +72,7 @@ void runApplication(void){
 
                     printf(COLOR_RESET);
 
-                    printf(COLOR_PROMPT);
-                    printf("\n\nPress ENTER to continue...");
-                    printf(COLOR_RESET);
-
-                    getchar();
+                    pauseScreen();
                 }
             }
             break;
@@ -93,11 +81,7 @@ void runApplication(void){
                 int searchingChoice;
 
                 while (1){
-                    #ifdef _WIN32
-                        system("cls");
-                    #else
-                        system("clear");
-                    #endif
+                    clearScreen();
 
                     searchingMenu();
 
@@ -153,11 +137,7 @@ void runApplication(void){
 
                     printf(COLOR_RESET);
 
-                    printf(COLOR_PROMPT);
-                    printf("\n\nPress ENTER to continue...");
-                    printf(COLOR_RESET);
-
-                    getchar();
+                    pauseScreen();
                 }
             }
             break;
@@ -180,9 +160,6 @@ void runApplication(void){
                 printf(COLOR_RESET);
         }
 
-        printf(COLOR_PROMPT);
-        printf("\n\nPress ENTER to continue...");
-        printf(COLOR_RESET);
-        getchar();
+        pauseScreen();
     }
 }
