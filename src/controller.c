@@ -78,7 +78,8 @@ void runApplication(void){
 
                     printf(COLOR_RESET);
 
-                    pauseScreen();
+                    getchar();
+
                 }
             }
             break;
