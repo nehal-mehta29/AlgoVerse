@@ -3,6 +3,7 @@
 #include "sorting/bubble.h"
 #include "sorting/sortingInput.h"
 #include "sorting/swap.h"
+#include "sorting/sortingUI.h"
 
 #include "utils.h"
 #include "colors.h"
@@ -47,8 +48,7 @@ void bubblePage(void){
                 Bubble Sort Algorithm
 ==========================================================*/
 
-void bubbleSort(struct Node **head,
-                struct Node **tail){
+void bubbleSort(struct Node **head, struct Node **tail){
 
     int swapped;
 
@@ -56,15 +56,32 @@ void bubbleSort(struct Node **head,
         return;
     }
 
+    int swapped;
+    int pass = 1;
+
     do{
         swapped = 0;
 
         struct Node *current = *head;
 
         while(current->next != NULL){
+
+            printComparison(current->data, current->next->data);
+
+            printCurrentList(*head);
+
+
             if(current->data > current->next->data){
+                printSwapRequired();
+
+                printBreakLinks(*head, current, current->next);
+
                 swapAdjacent(head, tail, current, current->next);
 
+                printReconnectLinks(*head);
+
+                printCurrentList(*head);
+                 
                 swapped = 1;
 
                 if(current->prev != NULL){
