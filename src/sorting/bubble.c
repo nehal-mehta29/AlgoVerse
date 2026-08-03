@@ -32,7 +32,19 @@ void bubblePage(void){
 
     tail = findTail(head);
 
-    printf("\n");
+    printf(COLOR_SUCCESS);
+    printf("\nOriginal Linked List\n");
+    printf(COLOR_RESET);
+
+    displayList(head);
+
+    /* Bubble Sort */
+
+    bubbleSort(&head, &tail);
+
+    printf(COLOR_SUCCESS);
+    printf("\nSorted Linked List\n");
+    printf(COLOR_RESET);
 
     displayList(head);
 
@@ -45,9 +57,50 @@ void bubblePage(void){
                 Bubble Sort Algorithm
 ==========================================================*/
 
-void bubbleSort(struct Node **head,
-                struct Node **tail){
+void bubbleSort(struct Node **head,struct Node **tail){
+    if(*head == NULL){
+        return;
+    }
 
-    (void)head;
-    (void)tail;
+    int swapped;
+
+    do{
+
+        swapped = 0;
+
+        struct Node *current = *head;
+
+        while(current->next != NULL){
+
+            if(current->data > current->next->data){
+
+                swapAdjacent(head,
+                             tail,
+                             current,
+                             current->next);
+
+                swapped = 1;
+
+                /*
+                    current now points to the larger node.
+
+                    After swapping:
+
+                    second -> current
+
+                    So move one step back to continue correctly.
+                */
+
+                if(current->prev != NULL){
+                    current = current->prev;
+                }
+            }
+            else{
+                current = current->next;
+            }
+
+        }
+
+    }
+    while(swapped);
 }
