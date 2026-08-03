@@ -1,6 +1,9 @@
 #include <stdio.h>
 
 #include "sorting/bubble.h"
+#include "sorting/sortingInput.h"
+#include "sorting/swap.h"
+
 #include "utils.h"
 #include "colors.h"
 #include "doublyLinkedList.h"
@@ -10,6 +13,7 @@
 ==========================================================*/
 
 void bubblePage(void){
+
     struct Node *head = NULL;
     struct Node *tail = NULL;
 
@@ -21,86 +25,59 @@ void bubblePage(void){
 
     printDivider("Bubble Sort");
 
-    printf(COLOR_TEXT);
-    printf("Enter Number of Elements : ");
-    printf(COLOR_RESET);
+    n = getNumberOfElements();  //Input
 
-    scanf("%d",&n);
-    getchar();
-
-    head = createList(n);
+    head = getInputList(n);
 
     tail = findTail(head);
 
-    printf(COLOR_SUCCESS);
-    printf("\nOriginal Linked List\n");
-    printf(COLOR_RESET);
+    printOriginalList(head);   //Original List
 
-    displayList(head);
+    bubbleSort(&head, &tail);   //Bubble Sort
 
-    /* Bubble Sort */
-
-    bubbleSort(&head, &tail);
-
-    printf(COLOR_SUCCESS);
-    printf("\nSorted Linked List\n");
-    printf(COLOR_RESET);
-
-    displayList(head);
+    printSortedList(head);   //Sorted List
 
     pauseScreen();
 
     freeList(head);
+
 }
 
 /*==========================================================
                 Bubble Sort Algorithm
 ==========================================================*/
 
-void bubbleSort(struct Node **head,struct Node **tail){
+void bubbleSort(struct Node **head,
+                struct Node **tail){
+
+    int swapped;
+
     if(*head == NULL){
         return;
     }
 
-    int swapped;
-
     do{
-
         swapped = 0;
 
         struct Node *current = *head;
 
         while(current->next != NULL){
-
             if(current->data > current->next->data){
-
-                swapAdjacent(head,
-                             tail,
-                             current,
-                             current->next);
+                swapAdjacent(head, tail, current, current->next);
 
                 swapped = 1;
-
-                /*
-                    current now points to the larger node.
-
-                    After swapping:
-
-                    second -> current
-
-                    So move one step back to continue correctly.
-                */
 
                 if(current->prev != NULL){
                     current = current->prev;
                 }
             }
+
             else{
                 current = current->next;
             }
-
         }
-
     }
+    
     while(swapped);
+
 }
