@@ -31,6 +31,12 @@ void homeMenu(void){
     printf("3. ");
 
     printf(COLOR_TEXT);
+    printf("Change Dataset\n");
+
+    printf(COLOR_NUMBER);
+    printf("4. ");
+
+    printf(COLOR_TEXT);
     printf("About AlgoVerse\n");
 
     printf(COLOR_NUMBER);
@@ -109,7 +115,7 @@ void sortingMenu(void){
 ==========================================================*/
 
 void searchingMenu(void){
-    printBreadcrumb("Home > Sorting Algorithms");
+    printBreadcrumb("Home > Searching Algorithms");
 
     printf(COLOR_BORDER);
     printf("------------------------------------------------------------\n");

@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "sorting/bubble.h"
-#include "sorting/sortingInput.h"
 #include "sorting/swap.h"
 #include "sorting/sortingUI.h"
 
@@ -18,7 +17,7 @@ void bubblePage(void){
     struct Node *head = NULL;
     struct Node *tail = NULL;
 
-    int n;
+    //int n;
 
     clearScreen();
 
@@ -26,17 +25,17 @@ void bubblePage(void){
 
     printDivider("Bubble Sort");
 
-    n = getNumberOfElements();  //Input
+    //n = getNumberOfElements();  //Input
 
-    head = getInputList(n);
+    //head = getInputList(n);
 
-    tail = findTail(head);
+    //tail = findTail(head);
 
-    printOriginalList(head);   //Original List
+    //printOriginalList(head);   //Original List
 
-    bubbleSort(&head, &tail);   //Bubble Sort
+    //bubbleSort(&head, &tail);   //Bubble Sort
 
-    printSortedList(head);   //Sorted List
+    //printSortedList(head);   //Sorted List
 
     pauseScreen();
 
@@ -48,7 +47,7 @@ void bubblePage(void){
                 Bubble Sort Algorithm
 ==========================================================*/
 
-void bubbleSort(struct Node **head, struct Node **tail){
+/*void bubbleSort(struct Node **head, struct Node **tail){
 
     int swapped;
 
@@ -97,4 +96,4 @@ void bubbleSort(struct Node **head, struct Node **tail){
     
     while(swapped);
 
-}
+}*/

@@ -6,6 +6,8 @@
 #include "colors.h"
 #include "utils.h"
 
+#include "datasetInput.h"
+
 #include "sorting/bubble.h"
 #include "sorting/selection.h"
 #include "sorting/insertion.h"
@@ -23,6 +25,8 @@
 
 void runApplication(void){
     int choice;
+
+    inputDataset();
 
     while (1){
         HOME_MENU:
@@ -138,6 +142,9 @@ void runApplication(void){
             break;
 
             case 3:
+                inputDataset();
+                break;
+            case 4:
                 aboutPage();
                 break;
 

@@ -4,12 +4,15 @@
 #include "datasetInput.h"
 #include "dataSet.h"
 #include "colors.h"
+#include "utils.h"
 
 /*==========================================================
                     Input Dataset
 ==========================================================*/
 
 void inputDataset(void){
+    clearScreen();
+
     int n;
     int i;
     int *data;
@@ -36,11 +39,11 @@ void inputDataset(void){
         exit(EXIT_FAILURE);
     }
 
-    printf(COLOR_TEXT);
-    printf("\nEnter %d Elements : ", n);
-    printf(COLOR_RESET);
-
     for (i = 0; i < n; i++){
+        printf(COLOR_TEXT);
+        printf("Enter Element %d : ", i + 1);
+        printf(COLOR_RESET);
+
         scanf("%d", &data[i]);
     }
 
