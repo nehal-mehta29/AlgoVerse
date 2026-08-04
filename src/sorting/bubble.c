@@ -34,20 +34,14 @@ void bubblePage(void){
     tail = findTail(head);
 
     //Original List
-    printf(COLOR_SUCCESS);
-    printf("\nOriginal Linked List\n");
-    printf(COLOR_RESET);
+    printOriginalListScreen(head);
 
-    displayList(head);
+    pauseScreen();
 
     bubbleSort(&head, &tail);   //Bubble Sort
 
     //Sorted List
-    printf(COLOR_SUCCESS);
-    printf("\nSorted Linked List\n");
-    printf(COLOR_RESET);   
-
-    displayList(head);
+    printSortedListScreen(head);
 
     pauseScreen();
 
@@ -73,11 +67,29 @@ void bubbleSort(struct Node **head, struct Node **tail){
         struct Node *current = *head;
 
         while(current->next != NULL){
+            printComparison(current->data,
+                current->next->data);
+
+            drawList(*head,
+                    current,
+                    current->next,
+                    LIST_COMPARE);
+            
+            printf("\n");
+
             if(current->data > current->next->data){
+
                 printSwapRequired();
 
                 swapAdjacent(head, tail, current, current->next);
-                 
+
+                drawList(*head,
+                    NULL,
+                    NULL,
+                    LIST_NORMAL);
+                
+                printf("\n");
+
                 swapped = 1;
 
                 if(current->prev != NULL){
@@ -86,6 +98,8 @@ void bubbleSort(struct Node **head, struct Node **tail){
             }
 
             else{
+                printNoSwap();
+                
                 current = current->next;
             }
         }

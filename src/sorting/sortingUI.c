@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "sorting/sortingUI.h"
 
@@ -7,37 +8,80 @@
 #include "doublyLinkedList.h"
 
 /*==========================================================
-                Algorithm Title
+                Internal Helper Functions
 ==========================================================*/
 
-void printAlgorithmTitle(const char *algorithm){
+static void printArrow(const char *arrow,
+                       const char *color){
 
-    printDivider(algorithm);
+    printf("%s", color);
+    printf("%s", arrow);
+    printf(COLOR_RESET);
 
 }
 
+
 /*==========================================================
-                    Pass Number
+                    Original List
 ==========================================================*/
 
-void printPass(int pass){
+void printOriginalListScreen(struct Node *head){
 
-    printf(COLOR_ACCENT);
     printf("\n");
-    printf("=============== PASS %d ===============\n", pass);
-    printf(COLOR_RESET);
+    
+    printDivider("ORIGINAL LIST");
+
+    printf("\n");
+
+    displayList(head);
 
 }
 
 /*==========================================================
-                    Step
+                    Sorted List
 ==========================================================*/
 
-void printStep(const char *message){
+void printSortedListScreen(struct Node *head){
 
-    printf(COLOR_TEXT);
-    printf("\n%s\n", message);
+    printDivider("SORTED LIST");
+
+    printf("\n");
+
+    printf(COLOR_SUCCESS);
+    printf("Sorting Completed Successfully!\n\n");
     printf(COLOR_RESET);
+
+    displayList(head);
+
+}
+
+/*==========================================================
+                    Pass Header
+==========================================================*/
+
+void printPassHeader(const char *algorithm, int pass){
+
+    char title[100];
+
+    snprintf(title,
+         sizeof(title),
+         "%s - PASS %d",
+         algorithm,
+         pass);
+
+    printDivider(title);
+
+    printBreadcrumb("Home > Sorting Algorithms > Visualization");
+
+}
+
+/*==========================================================
+                Visualization Header
+==========================================================*/
+
+void printVisualizationHeader(const char *title){
+
+    printDivider(title);
 
 }
 
@@ -47,56 +91,136 @@ void printStep(const char *message){
 
 void printComparison(int first, int second){
 
-    printf(COLOR_NUMBER);
+    printf("\n");
 
-    printf("\nComparing ");
+    printf(COLOR_LOGO);
+    printf("Comparing ");
 
-    printf("[%d]", first);
+    printf(COLOR_CURRENT);
+    printf("%d", first);
 
+    printf(COLOR_LOGO);
     printf(" and ");
 
-    printf("[%d]\n", second);
+    printf(COLOR_CURRENT);
+    printf("%d\n\n", second);
 
     printf(COLOR_RESET);
 
 }
 
 /*==========================================================
-                Swap Required
+                    Swap Required
 ==========================================================*/
 
 void printSwapRequired(void){
 
-    printf(COLOR_ERROR);
-    printf("Swap Required!\n");
+    printf(COLOR_ACCENT);
+    printf("Swap Required\n\n");
     printf(COLOR_RESET);
 
 }
 
 /*==========================================================
-                No Swap Required
+                    No Swap
 ==========================================================*/
 
 void printNoSwap(void){
 
     printf(COLOR_SUCCESS);
-    printf("Already in Correct Order.\n");
+    printf("Already in Correct Order\n\n");
     printf(COLOR_RESET);
 
 }
 
 /*==========================================================
-                Current List
+                    Step
 ==========================================================*/
 
-void printCurrentList(struct Node *head){
+void printStep(int step, int totalSteps){
 
-    printf(COLOR_SUCCESS);
+    printf("\n");
 
-    printf("\nCurrent Linked List\n");
+    printf(COLOR_TEXT);
+    printf("Step : %d of %d\n", step, totalSteps);
 
     printf(COLOR_RESET);
 
-    displayList(head);
+}
+
+/*==========================================================
+                Linked List Renderer
+==========================================================*/
+
+void drawList(struct Node *head,
+              struct Node *first,
+              struct Node *second,
+              int mode){
+
+    struct Node *current = head;
+
+    printf(COLOR_LOGO);
+    printf("\nHEAD\n");
+    printf(" |\n");
+    printf(" v\n");
+    printf(COLOR_RESET);
+
+    printf(COLOR_TEXT);
+    printf("NULL ");
+    printf(COLOR_RESET);
+
+    while(current != NULL){
+
+        printArrow("<-->", COLOR_TEXT);
+        printf(" ");
+
+        if(mode == LIST_COMPARE &&
+            (current == first || current == second)){
+
+                printf(COLOR_CURRENT);
+                printf("[%d]", current->data);
+                printf(COLOR_RESET);
+        }
+
+        else if(mode == LIST_SORTED){
+
+            printf(COLOR_SORTED);
+            printf("[%d]", current->data);
+            printf(COLOR_RESET);
+        }
+
+        else{
+
+            printf(COLOR_NUMBER);
+            printf("[%d]", current->data);
+            printf(COLOR_RESET);
+        }
+
+        printf(" ");
+
+        current = current->next;
+    }
+    printArrow("<-->", COLOR_TEXT);
+
+    printf(" ");
+
+    printf(COLOR_TEXT);
+    printf("NULL\n");
+    printf(COLOR_RESET);
+
+}
+
+/*==========================================================
+                Sorting Completed
+==========================================================*/
+
+void printSortingCompleted(void){
+
+    printf("\n");
+
+    printf(COLOR_SUCCESS);
+    printf("Sorting Completed Successfully!\n");
+
+    printf(COLOR_RESET);
 
 }
