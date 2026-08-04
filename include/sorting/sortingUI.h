@@ -59,6 +59,7 @@ void printStep(int step,
 void drawList(struct Node *head,
               struct Node *first,
               struct Node *second,
+              struct Node *breakAfter,
               int mode);
 
 #endif

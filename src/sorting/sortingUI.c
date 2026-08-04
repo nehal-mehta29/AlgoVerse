@@ -152,7 +152,10 @@ void printStep(int step, int totalSteps){
 void drawList(struct Node *head,
               struct Node *first,
               struct Node *second,
+              struct Node *breakAfter,
               int mode){
+
+    (void)breakAfter;
 
     struct Node *current = head;
 
@@ -167,9 +170,6 @@ void drawList(struct Node *head,
     printf(COLOR_RESET);
 
     while(current != NULL){
-
-        printArrow("<-->", COLOR_TEXT);
-        printf(" ");
 
         if(mode == LIST_COMPARE &&
             (current == first || current == second)){
@@ -196,11 +196,22 @@ void drawList(struct Node *head,
 
         printf(" ");
 
+        if(current->next != NULL){
+            if(current == breakAfter && mode == LIST_BREAK){
+                printArrow("<--X-->", COLOR_BREAK);
+            }
+            else if(current == breakAfter && mode == LIST_RELINK){
+                printArrow("<==>", COLOR_ACTIVE);
+            }
+            else{
+                printArrow("<-->", COLOR_TEXT);
+            }
+
+            printf(" ");
+        }
+
         current = current->next;
     }
-    printArrow("<-->", COLOR_TEXT);
-
-    printf(" ");
 
     printf(COLOR_TEXT);
     printf("NULL\n");
