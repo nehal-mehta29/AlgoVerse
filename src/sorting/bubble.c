@@ -57,6 +57,7 @@ void bubbleSort(struct Node **head, struct Node **tail){
 
     int swapped;
     int pass = 1;
+    int step;
 
     if(*head == NULL){
         return;
@@ -66,10 +67,14 @@ void bubbleSort(struct Node **head, struct Node **tail){
         printPassHeader("Bubble Sort", pass);
 
         swapped = 0;
+        step = 1;
 
         struct Node *current = *head;
 
         while(current->next != NULL){
+
+            printStep(step, getDatasetSize() - 1);
+
             printComparison(current->data,
                 current->next->data);
 
@@ -105,6 +110,7 @@ void bubbleSort(struct Node **head, struct Node **tail){
 
                 current = current->next;
             }
+            step ++;
         }
 
         pass++;
