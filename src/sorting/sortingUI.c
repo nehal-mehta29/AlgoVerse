@@ -70,9 +70,6 @@ void printPassHeader(const char *algorithm, int pass){
          pass);
 
     printDivider(title);
-
-    printBreadcrumb("Home > Sorting Algorithms > Visualization");
-
 }
 
 /*==========================================================

@@ -56,12 +56,15 @@ void bubblePage(void){
 void bubbleSort(struct Node **head, struct Node **tail){
 
     int swapped;
+    int pass = 1;
 
     if(*head == NULL){
         return;
     }
 
     do{
+        printPassHeader("Bubble Sort", pass);
+
         swapped = 0;
 
         struct Node *current = *head;
@@ -103,6 +106,8 @@ void bubbleSort(struct Node **head, struct Node **tail){
                 current = current->next;
             }
         }
+
+        pass++;
     }
     
     while(swapped);
