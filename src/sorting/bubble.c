@@ -81,7 +81,8 @@ void bubbleSort(struct Node **head, struct Node **tail){
             drawList(*head,
                     current,
                     current->next,
-                    NULL,
+                    current->prev,
+                    current,
                     LIST_COMPARE);
             
             printf("\n");
@@ -93,6 +94,7 @@ void bubbleSort(struct Node **head, struct Node **tail){
                 drawList(*head,
                     current,
                     current->next,
+                    current->prev,
                     current,
                     LIST_BREAK);
 
@@ -104,14 +106,16 @@ void bubbleSort(struct Node **head, struct Node **tail){
                     current->prev,
                     current,
                     current->prev,
+                    current,
                     LIST_RELINK);
 
                 printf("\n");
-                
+
                 drawList(*head,
                     current,
                     current->prev,
-                    NULL,
+                    current->prev,
+                    current,
                     LIST_SORTED);
                 
                 printf("\n");

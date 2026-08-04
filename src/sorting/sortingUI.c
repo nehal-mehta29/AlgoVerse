@@ -104,6 +104,19 @@ void printComparison(int first, int second){
 
     printf(COLOR_RESET);
 
+    printf(COLOR_POINTER);
+
+    if(first < second)
+        printf("%d < %d\n\n", first, second);
+
+    else if(first > second)
+        printf("%d > %d\n\n", first, second);
+
+    else
+        printf("%d = %d\n\n", first, second);
+
+    printf(COLOR_RESET);
+
 }
 
 /*==========================================================
@@ -153,6 +166,7 @@ void drawList(struct Node *head,
               struct Node *first,
               struct Node *second,
               struct Node *breakAfter,
+              struct Node *breakBefore,
               int mode){
 
     (void)breakAfter;
@@ -197,10 +211,12 @@ void drawList(struct Node *head,
         printf(" ");
 
         if(current->next != NULL){
-            if(current == breakAfter && mode == LIST_BREAK){
+            if(mode == LIST_BREAK &&
+                (current == breakAfter || current == breakBefore)){
                 printArrow("<--X-->", COLOR_BREAK);
             }
-            else if(current == breakAfter && mode == LIST_RELINK){
+            else if(mode == LIST_RELINK &&
+                (current == breakAfter || current == breakBefore)){
                 printArrow("<==>", COLOR_ACTIVE);
             }
             else{

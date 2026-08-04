@@ -44,11 +44,10 @@
 //========== Visualization Colors ==========
 
 /* Current Node Being Processed */
-#define COLOR_CURRENT      "\033[38;2;255;214;102m"   // Soft Gold
+#define COLOR_CURRENT      "\033[38;2;102;217;255m"   // Bright Cyan
 
 /* Swapped / Relinked Node */
-#define COLOR_ACTIVE       "\033[38;2;129;178;154m"   // Same as Success (Sage Green)
-
+#define COLOR_ACTIVE       "\033[38;2;0;255;127m"    // Bright Spring Green
 /* Broken Link Marker */
 #define COLOR_BREAK        "\033[31m"                 // Standard Red
 

@@ -60,6 +60,7 @@ void drawList(struct Node *head,
               struct Node *first,
               struct Node *second,
               struct Node *breakAfter,
+              struct Node *breakBefore,
               int mode);
 
 #endif
