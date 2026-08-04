@@ -4,6 +4,7 @@
 #include "sorting/swap.h"
 #include "sorting/sortingUI.h"
 
+#include "dataSet.h"
 #include "utils.h"
 #include "colors.h"
 #include "doublyLinkedList.h"
@@ -17,7 +18,8 @@ void bubblePage(void){
     struct Node *head = NULL;
     struct Node *tail = NULL;
 
-    //int n;
+    const int *data;
+    int size;
 
     clearScreen();
 
@@ -25,17 +27,27 @@ void bubblePage(void){
 
     printDivider("Bubble Sort");
 
-    //n = getNumberOfElements();  //Input
+    data = getDataset();
+    size = getDatasetSize();
 
-    //head = getInputList(n);
+    head = createList(data, size);
+    tail = findTail(head);
 
-    //tail = findTail(head);
+    //Original List
+    printf(COLOR_SUCCESS);
+    printf("\nOriginal Linked List\n");
+    printf(COLOR_RESET);
 
-    //printOriginalList(head);   //Original List
+    displayList(head);
 
-    //bubbleSort(&head, &tail);   //Bubble Sort
+    bubbleSort(&head, &tail);   //Bubble Sort
 
-    //printSortedList(head);   //Sorted List
+    //Sorted List
+    printf(COLOR_SUCCESS);
+    printf("\nSorted Linked List\n");
+    printf(COLOR_RESET);   
+
+    displayList(head);
 
     pauseScreen();
 
@@ -47,7 +59,7 @@ void bubblePage(void){
                 Bubble Sort Algorithm
 ==========================================================*/
 
-/*void bubbleSort(struct Node **head, struct Node **tail){
+void bubbleSort(struct Node **head, struct Node **tail){
 
     int swapped;
 
@@ -55,31 +67,16 @@ void bubblePage(void){
         return;
     }
 
-    int swapped;
-    int pass = 1;
-
     do{
         swapped = 0;
 
         struct Node *current = *head;
 
         while(current->next != NULL){
-
-            printComparison(current->data, current->next->data);
-
-            printCurrentList(*head);
-
-
             if(current->data > current->next->data){
                 printSwapRequired();
 
-                printBreakLinks(*head, current, current->next);
-
                 swapAdjacent(head, tail, current, current->next);
-
-                printReconnectLinks(*head);
-
-                printCurrentList(*head);
                  
                 swapped = 1;
 
@@ -96,4 +93,4 @@ void bubblePage(void){
     
     while(swapped);
 
-}*/
+}
