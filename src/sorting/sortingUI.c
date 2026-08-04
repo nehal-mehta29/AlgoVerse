@@ -28,7 +28,7 @@ static void printArrow(const char *arrow,
 void printOriginalListScreen(struct Node *head){
 
     printf("\n");
-    
+
     printDivider("ORIGINAL LIST");
 
     printf("\n");
@@ -182,9 +182,10 @@ void drawList(struct Node *head,
                 printf(COLOR_RESET);
         }
 
-        else if(mode == LIST_SORTED){
+        else if(mode == LIST_SORTED &&
+            (current == first || current == second)){
 
-            printf(COLOR_SORTED);
+            printf(COLOR_ACTIVE);
             printf("[%d]", current->data);
             printf(COLOR_RESET);
         }

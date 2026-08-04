@@ -84,9 +84,9 @@ void bubbleSort(struct Node **head, struct Node **tail){
                 swapAdjacent(head, tail, current, current->next);
 
                 drawList(*head,
-                    NULL,
-                    NULL,
-                    LIST_NORMAL);
+                    current,
+                    current->prev,
+                    LIST_SORTED);
                 
                 printf("\n");
 
@@ -99,7 +99,7 @@ void bubbleSort(struct Node **head, struct Node **tail){
 
             else{
                 printNoSwap();
-                
+
                 current = current->next;
             }
         }
