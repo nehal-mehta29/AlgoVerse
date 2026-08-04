@@ -21,11 +21,10 @@ struct Node *createNode(int data);
 
 /* List Operations */
 void insertAtEnd(struct Node **head, int data);
-struct Node *createList(int n);
+struct Node *createList(const int data[], int size);
 
 /* Display Functions */
 void displayList(struct Node *head);
-void displayReverse(struct Node *tail);
 
 /* Utility Functions */
 struct Node *findTail(struct Node *head);

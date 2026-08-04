@@ -51,20 +51,11 @@ void insertAtEnd(struct Node **head, int data){
                 Create Doubly Linked List
 ==========================================================*/
 
-struct Node *createList(int n){
+struct Node *createList(const int data[], int size){
     struct Node *head = NULL;
-    int element;
 
-    printf("\n");
-
-    for(int i = 0; i < n; i++){
-        printf(COLOR_INPUT);
-        printf("Element %d : ", i + 1);
-        printf(COLOR_RESET);
-
-        scanf("%d", &element);
-
-        insertAtEnd(&head, element);
+    for(int i = 0; i < size; i++){
+        insertAtEnd(&head, data[i]);
     }
 
     return head;
@@ -96,38 +87,6 @@ void displayList(struct Node *head){
         printf(" ");
 
         head = head->next;
-    }
-
-    printf("<--> NULL\n");
-    printf(COLOR_RESET);
-}
-
-/*==========================================================
-            Display Linked List In Reverse
-==========================================================*/
-
-void displayReverse(struct Node *tail){
-
-    printf(COLOR_LOGO);
-    printf("\nTAIL\n");
-    printf(" |\n");
-    printf(" v\n");
-    printf(COLOR_RESET);
-
-    printf(COLOR_TEXT);
-    printf("NULL ");
-
-    while(tail != NULL){
-
-        printf("<--> ");
-
-        printf(COLOR_NUMBER);
-        printf("[%d]", tail->data);
-
-        printf(COLOR_TEXT);
-        printf(" ");
-
-        tail = tail->prev;
     }
 
     printf("<--> NULL\n");
