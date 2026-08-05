@@ -175,6 +175,8 @@ int binarySearch(int arr[],
                 ARRAY_FOUND);
 
         printElementFound(mid);
+
+        return mid;
     }
 
     else if(arr[mid] < key){
@@ -204,5 +206,4 @@ int binarySearch(int arr[],
                             mid - 1,
                             key);
     }
-    return -1;
 }
