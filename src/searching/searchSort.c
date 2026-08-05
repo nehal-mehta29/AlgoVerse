@@ -4,7 +4,7 @@
                 Check if Array is Sorted
 ==========================================================*/
 
-int isSorted(int arr[],
+int isSortedArray(int arr[],
              int size){
 
     for(int i = 0; i < size - 1; i++){
@@ -21,7 +21,7 @@ int isSorted(int arr[],
                     Bubble Sort
 ==========================================================*/
 
-void bubbleSort(int arr[],
+void bubbleSortArray(int arr[],
                 int size){
 
     for(int i = 0; i < size - 1; i++){
@@ -50,7 +50,7 @@ void bubbleSort(int arr[],
                 Merge Two Sorted Arrays
 ==========================================================*/
 
-void merge(int arr[],
+void mergeArray(int arr[],
            int left,
            int mid,
            int right){
@@ -97,7 +97,7 @@ void merge(int arr[],
                     Merge Sort
 ==========================================================*/
 
-void mergeSort(int arr[],
+void mergeSortArray(int arr[],
                int left,
                int right){
 
@@ -105,10 +105,10 @@ void mergeSort(int arr[],
 
         int mid = (left + right) / 2;
 
-        mergeSort(arr, left, mid);
+        mergeSortArray(arr, left, mid);
 
-        mergeSort(arr, mid + 1, right);
+        mergeSortArray(arr, mid + 1, right);
 
-        merge(arr, left, mid, right);
+        mergeArray(arr, left, mid, right);
     }
 }

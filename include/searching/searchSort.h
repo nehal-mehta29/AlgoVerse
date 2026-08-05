@@ -5,21 +5,21 @@
                 Check if Array is Sorted
 ==========================================================*/
 
-int isSorted(int arr[],
+int isSortedArray(int arr[],
              int size);
 
 /*==========================================================
                     Bubble Sort
 ==========================================================*/
 
-void bubbleSort(int arr[],
+void bubbleSortArray(int arr[],
                 int size);
 
 /*==========================================================
                     Merge Sort
 ==========================================================*/
 
-void mergeSort(int arr[],
+void mergeSortArray(int arr[],
                int left,
                int right);
 
@@ -27,7 +27,7 @@ void mergeSort(int arr[],
                 Merge Two Sorted Arrays
 ==========================================================*/
 
-void merge(int arr[],
+void mergeArray(int arr[],
            int left,
            int mid,
            int right);
