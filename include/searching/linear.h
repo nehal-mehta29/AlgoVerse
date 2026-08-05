@@ -7,4 +7,12 @@
 
 void linearPage(void);
 
+/*==========================================================
+                    Linear Search
+==========================================================*/
+
+int linearSearch(int arr[],
+                 int size,
+                 int key);
+
 #endif
