@@ -3,16 +3,21 @@
 
 #include "searching/searchSort.h"
 #include "searching/binary.h"
+#include "searching/searchingUI.h"
 
 #include "utils.h"
 #include "colors.h"
 #include "dataSet.h"
+
+static int step = 1;
 
 /*==========================================================
                     Binary Search Page
 ==========================================================*/
 
 void binaryPage(void){
+    step = 1;
+
     const int *data;
     int *arr;
     int size;
@@ -54,15 +59,9 @@ void binaryPage(void){
                             Original Array
         ==========================================================*/
 
-        printf(COLOR_SUCCESS);
-        printf("\nOriginal Array\n");
-        printf(COLOR_RESET);
+        printOriginalArrayScreen(arr, size);
 
-        for(int i = 0; i < size; i++){
-            printf("%d ", arr[i]);
-        }
-
-        printf("\n");
+        pauseScreen();
 
         printf(COLOR_SUCCESS);
 
@@ -94,15 +93,9 @@ void binaryPage(void){
         printf(COLOR_RESET);
     }
 
-    printf(COLOR_SUCCESS);
-    printf("\nSorted Array\n");
-    printf(COLOR_RESET);
+    printSortedArrayScreen(arr, size);
 
-    for(int i = 0; i < size; i++){
-        printf("%d ", arr[i]);
-    }
-
-    printf("\n");
+    pauseScreen();
 
     printf(COLOR_INPUT);
     printf("\nEnter Element to Search : ");
@@ -153,23 +146,44 @@ int binarySearch(int arr[],
 
     int mid = (low + high) / 2;
 
-    printf("\n----------------------------------------");
-    printf("\nLow  = %d", low);
-    printf("\nHigh = %d", high);
-    printf("\nMid  = %d", mid);
-    printf("\nElement at Mid = %d\n", arr[mid]);
+    printSearchHeader("Binary Search", step++);
+
+    drawArray(arr,
+            high + 1,
+            mid,
+            -1,
+            low,
+            high,
+            ARRAY_COMPARE);
+
+    printCurrentRange(low, high);
+
+    printCurrentIndex(mid);
 
     if(arr[mid] == key){
 
-        printf("\n%d == %d\n", arr[mid], key);
+        printSearchComparison(arr[mid],
+                    key,
+                    "==");
 
-        return mid;
+        drawArray(arr,
+                high + 1,
+                mid,
+                -1,
+                low,
+                high,
+                ARRAY_FOUND);
+
+        printElementFound(mid);
     }
 
     else if(arr[mid] < key){
 
-        printf("\n%d < %d", arr[mid], key);
-        printf("\nSearching Right Half...\n");
+        printSearchComparison(arr[mid],
+                    key,
+                    "<");
+
+        printSearchDirection("Searching Right Half...");
 
         return binarySearch(arr,
                             mid + 1,
@@ -179,12 +193,16 @@ int binarySearch(int arr[],
 
     else{
 
-        printf("\n%d > %d", arr[mid], key);
-        printf("\nSearching Left Half...\n");
+        printSearchComparison(arr[mid],
+                    key,
+                    ">");
+
+        printSearchDirection("Searching Left Half...");
 
         return binarySearch(arr,
                             low,
                             mid - 1,
                             key);
     }
+    return -1;
 }

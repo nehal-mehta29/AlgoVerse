@@ -39,7 +39,7 @@ void drawArray(const int arr[],
                 Search Information
 ==========================================================*/
 
-void printComparison(int first,
+void printSearchComparison(int first,
                      int second,
                      const char *relation);
 
