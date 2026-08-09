@@ -105,10 +105,7 @@ void binaryPage(void){
 
     int index;
 
-    index = binarySearch(arr,
-                        0,
-                        size - 1,
-                        key);
+    index = binarySearch(arr, 0, size - 1, key);
 
     printf("\n");
 
@@ -133,10 +130,7 @@ void binaryPage(void){
                 Recursive Binary Search
 ==========================================================*/
 
-int binarySearch(int arr[],
-                 int low,
-                 int high,
-                 int key){
+int binarySearch(int arr[], int low, int high, int key){
 
     if(low > high){
         return -1;
@@ -149,7 +143,7 @@ int binarySearch(int arr[],
     ======================================================*/
 
     printf("\n");
-    
+
     printSearchHeader("Binary Search", step++);
 
     drawArray(arr,
@@ -164,19 +158,17 @@ int binarySearch(int arr[],
 
     printCurrentIndex(mid);
 
-    pauseScreen();
-
     /*======================================================
                         Comparison
     ======================================================*/
 
     if(arr[mid] == key){
 
-        printSearchComparison(arr[mid],
-                    key,
-                    "==");
+        printSearchComparison(arr[mid], key, "==");
 
         pauseScreen();
+
+        printf("\n");
 
         drawArray(arr,
                 high + 1,
@@ -188,40 +180,28 @@ int binarySearch(int arr[],
 
         printElementFound(mid);
 
-        pauseScreen();
-
         return mid;
     }
 
     else if(arr[mid] < key){
 
-        printSearchComparison(arr[mid],
-                    key,
-                    "<");
+        printSearchComparison(arr[mid], key, "<");
 
         printSearchDirection("Searching Right Half...");
 
         pauseScreen();
 
-        return binarySearch(arr,
-                            mid + 1,
-                            high,
-                            key);
+        return binarySearch(arr, mid + 1, high, key);
     }
 
     else{
 
-        printSearchComparison(arr[mid],
-                    key,
-                    ">");
+        printSearchComparison(arr[mid], key, ">");
 
         printSearchDirection("Searching Left Half...");
 
         pauseScreen();
 
-        return binarySearch(arr,
-                            low,
-                            mid - 1,
-                            key);
+        return binarySearch(arr, low, mid - 1, key);
     }
 }
