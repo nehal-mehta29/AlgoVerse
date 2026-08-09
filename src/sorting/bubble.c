@@ -43,8 +43,6 @@ void bubblePage(void){
     //Sorted List
     printSortedListScreen(head);
 
-    pauseScreen();
-
     freeList(head);
 
 }
@@ -73,6 +71,10 @@ void bubbleSort(struct Node **head, struct Node **tail){
 
         while(current->next != NULL){
 
+            /*==================================================
+                            Comparison
+            ==================================================*/
+
             printStep(step, getDatasetSize() - 1);
 
             printComparison(current->data,
@@ -84,12 +86,22 @@ void bubbleSort(struct Node **head, struct Node **tail){
                     current->prev,
                     current,
                     LIST_COMPARE);
-            
-            printf("\n");
+
+            delayScreen(800);
+
+            /*==================================================
+                            Swap Required
+            ==================================================*/
 
             if(current->data > current->next->data){
 
                 printSwapRequired();
+
+                delayScreen(800);
+
+                /*==================================================
+                            Break Connection
+                ==================================================*/
 
                 drawList(*head,
                     current,
@@ -98,9 +110,16 @@ void bubbleSort(struct Node **head, struct Node **tail){
                     current,
                     LIST_BREAK);
 
-                printf("\n");
+                delayScreen(800);
 
+                /*==================================================
+                            Swap Adjacent Nodes
+                ==================================================*/
                 swapAdjacent(head, tail, current, current->next);
+
+                /*==================================================
+                            Relink Nodes
+                ==================================================*/
 
                 drawList(*head,
                     current->prev,
@@ -109,8 +128,11 @@ void bubbleSort(struct Node **head, struct Node **tail){
                     current,
                     LIST_RELINK);
 
-                printf("\n");
+                delayScreen(800);
 
+                /*==================================================
+                            Swap Completed
+                ==================================================*/
                 drawList(*head,
                     current,
                     current->prev,
@@ -118,7 +140,7 @@ void bubbleSort(struct Node **head, struct Node **tail){
                     current,
                     LIST_SORTED);
                 
-                printf("\n");
+                delayScreen(800);
 
                 swapped = 1;
 
@@ -127,8 +149,14 @@ void bubbleSort(struct Node **head, struct Node **tail){
                 }
             }
 
+            /*==================================================
+                            No Swap
+            ==================================================*/
+
             else{
                 printNoSwap();
+
+                delayScreen(800);
 
                 current = current->next;
             }

@@ -86,8 +86,6 @@ void linearPage(void){
     }
 
     free(arr);
-
-    pauseScreen();
 }
 
 /*==========================================================
@@ -133,6 +131,9 @@ int linearSearch(int arr[],
         }
 
         printSearchDirection("Checking Next Element...");
+
+        pauseScreen();
+
         printf("\n");
     }
 

@@ -105,22 +105,18 @@ void jumpPage(void){
     printf("\n");
 
     if(index != -1){
-
         printf(COLOR_SUCCESS);
         printf("Element Found at Index %d\n", index);
         printf(COLOR_RESET);
     }
 
     else{
-
         printf(COLOR_ERROR);
         printf("Element Not Found\n");
         printf(COLOR_RESET);
     }
 
     free(arr);
-
-    pauseScreen();
 }
 
 /*==========================================================
@@ -161,6 +157,11 @@ int jumpSearch(int arr[],
                               "<");
 
         printSearchDirection("Jumping Forward...");
+
+        pauseScreen();
+
+        printf("\n");
+        printf("\n");
 
         prev = next;
         next += stepSize;
@@ -218,7 +219,9 @@ int jumpSearch(int arr[],
 
         printSearchDirection("Correct Block Found.");
 
-        printf("\n");
+        pauseScreen();
+
+        printf("\n");   
     }
 
     /*======================================================
@@ -260,6 +263,8 @@ int jumpSearch(int arr[],
         }
 
         printSearchDirection("Checking Next Element...");
+
+        pauseScreen();
 
         printf("\n");
 

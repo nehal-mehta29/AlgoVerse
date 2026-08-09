@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
+#include <windows.h>
 
 #include "utils.h"
 #include "colors.h"
@@ -25,7 +27,7 @@ void pauseScreen(void){
     printf("\nPress ENTER to continue...");
     printf(COLOR_RESET);
 
-    getchar();
+    while(_getch() != '\r');
 }
 
 /*==========================================================
@@ -54,4 +56,13 @@ void printDivider(const char *title){
     printf(" ====================\n");
 
     printf(COLOR_RESET);
+}
+
+/*==========================================================
+                Delay Screen
+==========================================================*/
+
+void delayScreen(int milliseconds){
+
+    Sleep(milliseconds);
 }

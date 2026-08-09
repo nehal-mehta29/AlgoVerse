@@ -82,8 +82,7 @@ void runApplication(void){
 
                     printf(COLOR_RESET);
 
-                    getchar();
-
+                    pauseScreen();
                 }
             }
             break;
@@ -136,7 +135,7 @@ void runApplication(void){
 
                     printf(COLOR_RESET);
 
-                    getchar();
+                    pauseScreen();
                 }
             }
             break;

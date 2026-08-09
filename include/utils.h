@@ -17,4 +17,7 @@ void printBreadcrumb(const char *path);
 /* Print a horizontal divider */
 void printDivider(const char *title);
 
+/* Delay the screen for a specified number of milliseconds */
+void delayScreen(int milliseconds);
+
 #endif

@@ -127,8 +127,6 @@ void binaryPage(void){
     }
 
     free(arr);
-
-    pauseScreen();
 }
 
 /*==========================================================
@@ -146,6 +144,12 @@ int binarySearch(int arr[],
 
     int mid = (low + high) / 2;
 
+    /*======================================================
+                        Current Step
+    ======================================================*/
+
+    printf("\n");
+    
     printSearchHeader("Binary Search", step++);
 
     drawArray(arr,
@@ -160,11 +164,19 @@ int binarySearch(int arr[],
 
     printCurrentIndex(mid);
 
+    pauseScreen();
+
+    /*======================================================
+                        Comparison
+    ======================================================*/
+
     if(arr[mid] == key){
 
         printSearchComparison(arr[mid],
                     key,
                     "==");
+
+        pauseScreen();
 
         drawArray(arr,
                 high + 1,
@@ -176,6 +188,8 @@ int binarySearch(int arr[],
 
         printElementFound(mid);
 
+        pauseScreen();
+
         return mid;
     }
 
@@ -186,6 +200,8 @@ int binarySearch(int arr[],
                     "<");
 
         printSearchDirection("Searching Right Half...");
+
+        pauseScreen();
 
         return binarySearch(arr,
                             mid + 1,
@@ -200,6 +216,8 @@ int binarySearch(int arr[],
                     ">");
 
         printSearchDirection("Searching Left Half...");
+
+        pauseScreen();
 
         return binarySearch(arr,
                             low,
