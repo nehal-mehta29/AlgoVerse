@@ -132,7 +132,7 @@ int linearSearch(int arr[],
 
         printSearchDirection("Checking Next Element...");
 
-        pauseScreen();
+        delayScreen(800);
 
         printf("\n");
     }

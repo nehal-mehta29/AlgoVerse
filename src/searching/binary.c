@@ -166,7 +166,7 @@ int binarySearch(int arr[], int low, int high, int key){
 
         printSearchComparison(arr[mid], key, "==");
 
-        pauseScreen();
+        delayScreen(800);
 
         printf("\n");
 
@@ -189,7 +189,7 @@ int binarySearch(int arr[], int low, int high, int key){
 
         printSearchDirection("Searching Right Half...");
 
-        pauseScreen();
+        delayScreen(800);
 
         return binarySearch(arr, mid + 1, high, key);
     }
@@ -200,7 +200,7 @@ int binarySearch(int arr[], int low, int high, int key){
 
         printSearchDirection("Searching Left Half...");
 
-        pauseScreen();
+        delayScreen(800);
 
         return binarySearch(arr, low, mid - 1, key);
     }

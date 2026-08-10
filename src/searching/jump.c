@@ -138,8 +138,7 @@ int jumpSearch(int arr[],
 
     while(prev < size && arr[(next < size ? next : size) - 1] < key){
 
-        printSearchHeader("Jump Search",
-                          step++);
+        printSearchHeader("Jump Search", step++);
 
         drawArray(arr,
                   size,
@@ -149,8 +148,7 @@ int jumpSearch(int arr[],
                   (next < size ? next : size) - 1,
                   ARRAY_COMPARE);
 
-        printCurrentRange(prev,
-                          (next < size ? next : size) - 1);
+        printCurrentRange(prev, (next < size ? next : size) - 1);
 
         printSearchComparison(arr[(next < size ? next : size) - 1],
                               key,
@@ -158,7 +156,7 @@ int jumpSearch(int arr[],
 
         printSearchDirection("Jumping Forward...");
 
-        pauseScreen();
+        delayScreen(800);
 
         printf("\n");
         printf("\n");
@@ -219,7 +217,7 @@ int jumpSearch(int arr[],
 
         printSearchDirection("Correct Block Found.");
 
-        pauseScreen();
+        delayScreen(800);   
 
         printf("\n");   
     }
@@ -264,7 +262,7 @@ int jumpSearch(int arr[],
 
         printSearchDirection("Checking Next Element...");
 
-        pauseScreen();
+        delayScreen(800);
 
         printf("\n");
 
