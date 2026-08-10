@@ -43,3 +43,91 @@ void swapAdjacent(struct Node **head,
     first->prev = second;
     first->next = after;
 }
+
+/*==========================================================*
+                    Swap Any Two Nodes
+*==========================================================*/
+
+void swapNodes(struct Node **head,
+               struct Node **tail,
+               struct Node *a,
+               struct Node *b){
+
+    if(a == NULL || b == NULL || a == b){
+        return;
+    }
+
+    /*======================================================*
+                        Adjacent Nodes
+    *======================================================*/
+
+    if(a->next == b){
+        swapAdjacent(head, tail, a, b);
+        return;
+    }
+
+    if(b->next == a){
+        swapAdjacent(head, tail, b, a);
+        return;
+    }
+
+    /*======================================================*
+                        Save Connections
+    *======================================================*/
+
+    struct Node *aPrev = a->prev;
+    struct Node *aNext = a->next;
+
+    struct Node *bPrev = b->prev;
+    struct Node *bNext = b->next;
+
+    /*======================================================*
+                    Connect A's Neighbours to B
+    *======================================================*/
+
+    if(aPrev != NULL){
+        aPrev->next = b;
+    }
+    else{
+        *head = b;
+    }
+
+    if(aNext != NULL){
+        aNext->prev = b;
+    }
+    else{
+        *tail = b;
+    }
+
+    /*======================================================*
+                    Connect B's Neighbours to A
+    *======================================================*/
+
+    if(bPrev != NULL){
+        bPrev->next = a;
+    }
+    else{
+        *head = a;
+    }
+
+    if(bNext != NULL){
+        bNext->prev = a;
+    }
+    else{
+        *tail = a;
+    }
+
+    /*======================================================*
+                            Update A
+    *======================================================*/
+
+    a->prev = bPrev;
+    a->next = bNext;
+
+    /*======================================================*
+                            Update B
+    *======================================================*/
+
+    b->prev = aPrev;
+    b->next = aNext;
+}

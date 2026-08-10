@@ -12,4 +12,14 @@ void swapAdjacent(struct Node **head,
                   struct Node *first,
                   struct Node *second);
 
+/*==========================================================
+                Swap Any Two Nodes
+==========================================================*/
+
+void swapNodes(struct Node **head,
+               struct Node **tail,
+               struct Node *a,
+               struct Node *b);
+
+
 #endif 
