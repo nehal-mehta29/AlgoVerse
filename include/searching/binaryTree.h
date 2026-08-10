@@ -40,6 +40,23 @@ struct TreeNode *buildBSTFromDataset(const int *data, int size);
 void displayTree(struct TreeNode *root);
 
 /*==========================================================*
+        Display BST With Highlighted Search Node
+*==========================================================*/
+
+void displayHighlightedTree(struct TreeNode *root,
+                             struct TreeNode *current,
+                             int found);
+
+/*==========================================================*
+                Display BST During Search
+*==========================================================*/
+
+void displaySearchTree(struct TreeNode *root,
+                       struct TreeNode *current,
+                       int found,
+                       int step );
+
+/*==========================================================*
                         Free BST
 *==========================================================*/
 

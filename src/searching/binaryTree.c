@@ -37,8 +37,7 @@ struct TreeNode *createTreeNode(int data){
                 Insert Node Into BST
 *==========================================================*/
 
-struct TreeNode *insertTreeNode(struct TreeNode *root,
-                                int data){
+struct TreeNode *insertTreeNode(struct TreeNode *root, int data){
 
     if(root == NULL){
 
@@ -64,8 +63,7 @@ struct TreeNode *insertTreeNode(struct TreeNode *root,
                 Build BST From Stored Dataset
 *==========================================================*/
 
-struct TreeNode *buildBSTFromDataset(const int *data,
-                                     int size){
+struct TreeNode *buildBSTFromDataset(const int *data, int size){
 
     struct TreeNode *root = NULL;
 
@@ -137,7 +135,9 @@ static void makeChars(char *str,
                     Build Printable Tree
 *==========================================================*/
 
-static TreeBox buildTreeBox(struct TreeNode *root){
+static TreeBox buildTreeBox(struct TreeNode *root, 
+                            struct TreeNode *current,
+                            int found){
 
     TreeBox box;
 
@@ -149,17 +149,35 @@ static TreeBox buildTreeBox(struct TreeNode *root){
     if(root == NULL)
         return box;
 
-    char nodeText[20];
+    char nodeText[64];
+    char plainNodeText[20];
 
-    sprintf(nodeText, "%d", root->data);
+    sprintf(plainNodeText, "%d", root->data);
 
-    int nodeWidth = strlen(nodeText);
+    int nodeWidth = strlen(plainNodeText);
+
+    if(root == current){
+
+        if(found){
+            sprintf(nodeText,
+                    COLOR_ACTIVE "%d" COLOR_RESET,
+                    root->data);
+        }
+        else{
+            sprintf(nodeText,
+                    COLOR_ACCENT "%d" COLOR_RESET,
+                    root->data);
+        }
+    }
+    else{
+        sprintf(nodeText, "%d", root->data);
+    }
 
     TreeBox leftBox =
-        buildTreeBox(root->left);
+        buildTreeBox(root->left, current, found);
 
     TreeBox rightBox =
-        buildTreeBox(root->right);
+        buildTreeBox(root->right, current, found);
 
     char line1[256] = "";
     char line2[256] = "";
@@ -314,7 +332,15 @@ static TreeBox buildTreeBox(struct TreeNode *root){
                row);
     }
 
-    box.width = strlen(line1);
+    box.width = strlen(plainNodeText);
+
+    if(leftBox.width > 0){
+        box.width += leftBox.width + 1;
+    }
+
+    if(rightBox.width > 0){
+        box.width += rightBox.width + 1;
+    }
 
     return box;
 }
@@ -335,11 +361,7 @@ void displayTree(struct TreeNode *root){
     }
 
     TreeBox box =
-        buildTreeBox(root);
-
-    printf("\n");
-
-    printDivider("BINARY SEARCH TREE");
+        buildTreeBox(root, NULL, 0);
 
     printf("\n");
 
@@ -352,6 +374,85 @@ void displayTree(struct TreeNode *root){
     }
 
     printf("\n");
+}
+
+void displayHighlightedTree(struct TreeNode *root,
+                            struct TreeNode *current,
+                            int found){
+
+    if(root == NULL){
+        return;
+    }
+
+    TreeBox box =
+        buildTreeBox(root, current, found);
+
+    printf("\n");
+
+    for(int i = 0;
+        i < box.numLines;
+        i++){
+
+        printf("%s\n", box.lines[i]);
+    }
+
+    printf("\n");
+}
+
+/*==========================================================*
+                Display BST During Search
+*==========================================================*/
+
+void displaySearchTree(struct TreeNode *root,
+                       struct TreeNode *current,
+                       int found,
+                       int step){
+
+    if(root == NULL){
+        return;
+    }
+
+    printf("\n");
+
+    //Display step number
+
+    printf(COLOR_LOGO);
+    printf("======== BINARY SEARCH TREE - STEP ");
+
+    printf(COLOR_CURRENT);
+    printf("%d", step);
+
+    printf(COLOR_LOGO);
+    printf(" ========\n");
+
+    printf(COLOR_RESET);
+
+    printf("\n");
+
+    // Display tree
+
+    displayHighlightedTree(root, current, found);
+
+    //Display which node is being compared
+
+    if(current != NULL){
+
+        if(found){
+
+            printf(COLOR_SUCCESS);
+            printf("\nFound Element : %d\n",
+                   current->data);
+            printf(COLOR_RESET);
+        }
+
+        else{
+
+            printf(COLOR_CURRENT);
+            printf("\nComparing Element : %d\n",
+                   current->data);
+            printf(COLOR_RESET);
+        }
+    }
 }
 
 /*==========================================================*
