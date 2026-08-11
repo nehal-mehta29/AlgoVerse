@@ -7,4 +7,12 @@
 
 void bfsPage(void);
 
+/*==========================================================*
+                BFS Search
+*==========================================================*/
+
+struct TreeNode *bfsSearch(struct TreeNode *root,
+                           int key,
+                           int *step);
+
 #endif
