@@ -2,6 +2,8 @@
 #define BUBBLE_H
 #include "doublyLinkedList.h"
 
+#include "cost.h"
+
 /*==========================================================
                     Bubble Sort Page
 ==========================================================*/
@@ -13,6 +15,7 @@ void bubblePage(void);
 ==========================================================*/
 
 void bubbleSort(struct Node **head,
-                struct Node **tail);
+                struct Node **tail,
+                struct Cost *cost);
 
 #endif

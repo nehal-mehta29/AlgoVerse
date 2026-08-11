@@ -9,6 +9,8 @@
 #include "colors.h"
 #include "doublyLinkedList.h"
 
+#include "cost.h"
+
 /*==========================================================
                     Bubble Sort Page
 ==========================================================*/
@@ -38,10 +40,24 @@ void bubblePage(void){
 
     pauseScreen();
 
-    bubbleSort(&head, &tail);   //Bubble Sort
+    printf("\n\n");
+
+    struct Cost cost = {0};  // Initialize cost structure
+    startCostTimer(&cost);
+
+    bubbleSort(&head, &tail, &cost);   //Bubble Sort
+
+    stopCostTimer(&cost);
 
     //Sorted List
     printSortedListScreen(head);
+
+    pauseScreen();
+
+    printf("\n");
+    
+    //Display Cost Analysis
+    displayCostAnalysis(cost, "Bubble Sort", size);
 
     freeList(head);
 
@@ -51,7 +67,7 @@ void bubblePage(void){
                 Bubble Sort Algorithm
 ==========================================================*/
 
-void bubbleSort(struct Node **head, struct Node **tail){
+void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
     int swapped;
     int pass = 1;
@@ -93,6 +109,8 @@ void bubbleSort(struct Node **head, struct Node **tail){
                             Swap Required
             ==================================================*/
 
+            countComparison(cost);
+
             if(current->data > current->next->data){
 
                 printSwapRequired();
@@ -116,6 +134,8 @@ void bubbleSort(struct Node **head, struct Node **tail){
                             Swap Adjacent Nodes
                 ==================================================*/
                 swapAdjacent(head, tail, current, current->next);
+
+                countSwap(cost);
 
                 /*==================================================
                             Relink Nodes
