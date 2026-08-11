@@ -47,7 +47,11 @@ void countSwap(struct Cost *cost){
 
 void displayCostAnalysis(struct Cost cost,
                          const char *algorithm,
-                         int inputSize){
+                         int inputSize,
+                         const char *bestCase,
+                         const char *averageCase,
+                         const char *worstCase,
+                         const char *space){
 
     printf("\n");
     printf("========================================\n");
@@ -81,10 +85,10 @@ void displayCostAnalysis(struct Cost cost,
 
     printf("\n");
 
-    printf("Best Case       : O(n)\n");
-    printf("Average Case    : O(n^2)\n");
-    printf("Worst Case      : O(n^2)\n");
-    printf("Space           : O(1)\n");
+    printf("Best Case       : %s\n",bestCase);
+    printf("Average Case    : %s\n",averageCase);
+    printf("Worst Case      : %s\n",worstCase);
+    printf("Space           : %s\n",space);
 
     printf("\n");
     printf("========================================\n");

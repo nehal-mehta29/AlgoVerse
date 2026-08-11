@@ -40,6 +40,10 @@ void countSwap(struct Cost *cost);
 
 void displayCostAnalysis(struct Cost cost,
                          const char *algorithm,
-                         int inputSize);
+                         int inputSize,
+                         const char *bestCase,
+                         const char *averageCase,
+                         const char *worstCase,
+                         const char *space);
 
 #endif

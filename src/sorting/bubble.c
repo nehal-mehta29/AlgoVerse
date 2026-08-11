@@ -55,9 +55,15 @@ void bubblePage(void){
     pauseScreen();
 
     printf("\n");
-    
+
     //Display Cost Analysis
-    displayCostAnalysis(cost, "Bubble Sort", size);
+    displayCostAnalysis(cost,
+                        "Bubble Sort",
+                        size,
+                        "O(n)",
+                        "O(n^2)",
+                        "O(n^2)",
+                        "O(1)");
 
     freeList(head);
 
