@@ -82,9 +82,7 @@ void displayCostAnalysis(struct Cost cost,
 
     printf("Swaps           : %ld\n",
            cost.swaps);
-
-    printf("\n");
-
+  
     /*======================================================*
                     THEORETICAL COST
     *======================================================*/
@@ -106,6 +104,8 @@ void displayCostAnalysis(struct Cost cost,
            inputSize,
            inputSize,
            inputSize * (inputSize - 1) / 2);
+
+    printf("\n");
 
     /*======================================================*
                     COMPLEXITY

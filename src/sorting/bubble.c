@@ -186,8 +186,12 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
                 current = current->next;
             }
+
+            delayScreen(800);
             step ++;
         }
+
+        delayScreen(800);
 
         pass++;
     }
