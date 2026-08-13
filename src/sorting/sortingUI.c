@@ -100,20 +100,24 @@ void printComparison(int first, int second){
     printf(" and ");
 
     printf(COLOR_CURRENT);
-    printf("%d\n\n", second);
+    printf("%d", second);
 
-    printf(COLOR_RESET);
+    printf(COLOR_LOGO);
+    printf("  |  ");
 
     printf(COLOR_POINTER);
 
     if(first < second)
-        printf("%d < %d\n\n", first, second);
+        printf("%d < %d", first, second);
 
     else if(first > second)
-        printf("%d > %d\n\n", first, second);
+        printf("%d > %d", first, second);
 
     else
-        printf("%d = %d\n\n", first, second);
+        printf("%d = %d", first, second);
+
+    printf(COLOR_LOGO);
+    printf("  |  ");
 
     printf(COLOR_RESET);
 
@@ -126,7 +130,7 @@ void printComparison(int first, int second){
 void printSwapRequired(void){
 
     printf(COLOR_ACCENT);
-    printf("Swap Required\n\n");
+    printf("Swap Required\n");
     printf(COLOR_RESET);
 
 }
@@ -138,8 +142,10 @@ void printSwapRequired(void){
 void printNoSwap(void){
 
     printf(COLOR_SUCCESS);
-    printf("Already in Correct Order\n\n");
+    printf("Already in Correct Order\n");
     printf(COLOR_RESET);
+
+    printf("\n ");
 
 }
 
@@ -233,6 +239,103 @@ void drawList(struct Node *head,
     printf("NULL\n");
     printf(COLOR_RESET);
 
+}
+
+/*==========================================================*
+                    Inline List Renderer
+*==========================================================*/
+
+void drawListInline(struct Node *head,
+                           struct Node *first,
+                           struct Node *second,
+                           int mode){
+
+    struct Node *current = head;
+
+    printf("NULL ");
+
+    while(current != NULL){
+
+        /* Highlight compared nodes */
+        if(mode == LIST_COMPARE &&
+           (current == first || current == second)){
+
+            printf(COLOR_CURRENT);
+            printf("[%d]", current->data);
+            printf(COLOR_RESET);
+        }
+
+        /* Highlight sorted nodes */
+        else if(mode == LIST_SORTED &&
+                (current == first || current == second)){
+  
+            printf(COLOR_SUCCESS);
+            printf("[%d]", current->data);
+            printf(COLOR_RESET);
+        }
+
+        else{
+
+            printf(COLOR_NUMBER);
+            printf("[%d]", current->data);
+            printf(COLOR_RESET);
+        }
+
+        if(current->next != NULL){
+
+            if(mode == LIST_BREAK &&
+               (current == first || current == second)){
+
+                printArrow("<--X-->", COLOR_BREAK);
+            }
+
+            else if(mode == LIST_RELINK &&
+                    (current == first || current == second)){
+
+                printArrow("<==>", COLOR_ACTIVE);
+            }
+
+            else{
+
+                printArrow("<-->", COLOR_TEXT);
+            }
+
+            printf(" ");
+        }
+
+        current = current->next;
+    }
+
+    printf("NULL");
+}
+
+/*==========================================================*
+                    Swap Visualization
+*==========================================================*/
+
+void drawSwapSequence(struct Node *head,
+                      struct Node *first,
+                      struct Node *second){
+
+    /*======================================================*
+                    Break + Relink
+    *======================================================*/
+
+    drawListInline(head,
+                   first,
+                   second,
+                   LIST_BREAK);
+
+    printf(COLOR_LOGO);
+    printf("  |  ");
+    printf(COLOR_RESET);
+
+    drawListInline(head,
+                   first,
+                   second,
+                   LIST_RELINK);
+
+    printf("\n");
 }
 
 /*==========================================================

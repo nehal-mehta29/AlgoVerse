@@ -63,4 +63,15 @@ void drawList(struct Node *head,
               struct Node *breakBefore,
               int mode);
 
+// Draws the swap sequence between two nodes in the linked list
+void drawSwapSequence(struct Node *head,
+                      struct Node *first,
+                      struct Node *second);
+
+// Draws the linked list inline according to the visualization mode
+void drawListInline(struct Node *head,
+                    struct Node *first,
+                    struct Node *second,
+                    int mode);
+
 #endif

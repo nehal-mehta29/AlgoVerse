@@ -99,9 +99,6 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
             printStep(step, getDatasetSize() - 1);
 
-            printComparison(current->data,
-                current->next->data);
-
             drawList(*head,
                     current,
                     current->next,
@@ -109,7 +106,8 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
                     current,
                     LIST_COMPARE);
 
-            delayScreen(800);
+            printComparison(current->data,
+                current->next->data);
 
             /*==================================================
                             Swap Required
@@ -121,58 +119,60 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
                 printSwapRequired();
 
-                delayScreen(800);
+                printf("\n");
 
                 /*==================================================
-                            Break Connection
+                                Break Visualization
                 ==================================================*/
 
-                drawList(*head,
-                    current,
-                    current->next,
-                    current->prev,
-                    current,
-                    LIST_BREAK);
+                drawListInline(*head,
+                            current,
+                            current->next,
+                            LIST_BREAK);
 
-                delayScreen(800);
+                printf(COLOR_LOGO);
+                printf("  |  ");
+                printf(COLOR_RESET);
 
                 /*==================================================
-                            Swap Adjacent Nodes
+                                Actual Swap
                 ==================================================*/
-                swapAdjacent(head, tail, current, current->next);
+
+                swapAdjacent(head,
+                            tail,
+                            current,
+                            current->next);
 
                 countSwap(cost);
 
                 /*==================================================
-                            Relink Nodes
+                                Relink Visualization
                 ==================================================*/
 
-                drawList(*head,
-                    current->prev,
-                    current,
-                    current->prev,
-                    current,
-                    LIST_RELINK);
+                drawListInline(*head,
+                            current,
+                            current->prev,
+                            LIST_RELINK);
 
-                delayScreen(800);
+                printf("\n\n");
 
                 /*==================================================
-                            Swap Completed
+                                Final Swapped List
                 ==================================================*/
-                drawList(*head,
-                    current,
-                    current->prev,
-                    current->prev,
-                    current,
-                    LIST_SORTED);
-                
-                delayScreen(800);
+
+                drawListInline(*head,
+                            current,
+                            current->prev,
+                            LIST_SORTED);
+
+                printf("\n");
 
                 swapped = 1;
 
-                if(current->prev != NULL){
-                    current = current->prev;
-                }
+                printf("\n");
+
+                swapped = 1;
+
             }
 
             /*==================================================
