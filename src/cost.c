@@ -66,7 +66,11 @@ void displayCostAnalysis(struct Cost cost,
 
     printf("\n");
 
-    printf("## ACTUAL COST\n");
+    /*======================================================*
+                        ACTUAL COST
+    *======================================================*/
+
+    printf("---------- ACTUAL COST ----------\n");
 
     printf("\n");
 
@@ -81,7 +85,33 @@ void displayCostAnalysis(struct Cost cost,
 
     printf("\n");
 
-    printf("## COMPLEXITY\n");
+    /*======================================================*
+                    THEORETICAL COST
+    *======================================================*/
+
+    printf("\n");
+    printf("------ THEORETICAL COST ------\n");
+    printf("\n");
+
+    printf("Comparisons     : n(n - 1)\n");
+    printf("                  %d(%d - 1) = %d\n",
+           inputSize,
+           inputSize,
+           inputSize * (inputSize - 1));
+
+    printf("\n");
+
+    printf("Swaps           : n(n - 1) / 2\n");
+    printf("                  %d(%d - 1) / 2 = %d\n",
+           inputSize,
+           inputSize,
+           inputSize * (inputSize - 1) / 2);
+
+    /*======================================================*
+                    COMPLEXITY
+    *======================================================*/
+
+    printf("---------- COMPLEXITY ----------\n");
 
     printf("\n");
 
