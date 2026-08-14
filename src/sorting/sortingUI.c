@@ -116,9 +116,6 @@ void printComparison(int first, int second){
     else
         printf("%d = %d", first, second);
 
-    printf(COLOR_LOGO);
-    printf("  |  ");
-
     printf(COLOR_RESET);
 
 }
