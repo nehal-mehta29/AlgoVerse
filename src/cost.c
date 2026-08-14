@@ -7,7 +7,7 @@
 
 void startCostTimer(struct Cost *cost){
 
-    cost->start = clock();
+       cost->start = clock();
 }
 
 /*==========================================================*
@@ -16,11 +16,11 @@ void startCostTimer(struct Cost *cost){
 
 void stopCostTimer(struct Cost *cost){
 
-    cost->end = clock();
+       cost->end = clock();
 
-    cost->executionTime =
-        ((double)(cost->end - cost->start)
-        / CLOCKS_PER_SEC) * 1000.0;
+       cost->executionTime =
+              ((double)(cost->end - cost->start)
+              / CLOCKS_PER_SEC) * 1000.0;
 }
 
 /*==========================================================*
@@ -29,7 +29,7 @@ void stopCostTimer(struct Cost *cost){
 
 void countComparison(struct Cost *cost){
 
-    cost->comparisons++;
+       cost->comparisons++;
 }
 
 /*==========================================================*
@@ -38,7 +38,7 @@ void countComparison(struct Cost *cost){
 
 void countSwap(struct Cost *cost){
 
-    cost->swaps++;
+       cost->swaps++;
 }
 
 /*==========================================================*
@@ -48,78 +48,78 @@ void countSwap(struct Cost *cost){
 void displayCostAnalysis(struct Cost cost,
                          const char *algorithm,
                          int inputSize,
+                         const char *comparisonFormula,
+                         long theoreticalComparisons,
+                         const char *swapFormula,     
+                         long theoreticalSwaps,  
                          const char *bestCase,
                          const char *averageCase,
                          const char *worstCase,
                          const char *space){
 
-    printf("\n");
-    printf("========================================\n");
-    printf("          %s COST ANALYSIS\n",
-           algorithm);
-    printf("========================================\n");
+       printf("\n");
+       printf("========================================\n");
+       printf("          %s COST ANALYSIS\n",
+              algorithm);
+       printf("========================================\n");
 
-    printf("\n");
+       printf("\n");
 
-    printf("Algorithm       : %s\n", algorithm);
-    printf("Input Size      : %d\n", inputSize);
+       printf("Algorithm       : %s\n", algorithm);
+       printf("Input Size      : %d\n", inputSize);
 
-    printf("\n");
+       printf("\n");
 
-    /*======================================================*
-                        ACTUAL COST
-    *======================================================*/
+       /*======================================================*
+                            ACTUAL COST
+       *======================================================*/
 
-    printf("---------- ACTUAL COST ----------\n");
+       printf("---------- ACTUAL COST ----------\n");
 
-    printf("\n");
+       printf("\n");
 
-    printf("Execution Time  : %.3f ms\n",
-           cost.executionTime);
+       printf("Execution Time  : %.3f ms\n",
+              cost.executionTime);
 
-    printf("Comparisons     : %ld\n",
-           cost.comparisons);
+       printf("Comparisons     : %ld\n",
+              cost.comparisons);
 
-    printf("Swaps           : %ld\n",
-           cost.swaps);
-  
-    /*======================================================*
-                    THEORETICAL COST
-    *======================================================*/
+       printf("Swaps           : %ld\n",
+              cost.swaps);
+       
+       /*======================================================*
+                     THEORETICAL COST
+       *======================================================*/
 
-    printf("\n");
-    printf("------ THEORETICAL COST ------\n");
-    printf("\n");
+       printf("\n");
+       printf("------ THEORETICAL COST ------\n");
+       printf("\n");
 
-    printf("Comparisons     : n(n - 1)\n");
-    printf("                  %d(%d - 1) = %d\n",
-           inputSize,
-           inputSize,
-           inputSize * (inputSize - 1));
+       printf("Comparisons     : %s\n", comparisonFormula);
 
-    printf("\n");
+       printf("                  = %ld\n", theoreticalComparisons);
 
-    printf("Swaps           : n(n - 1) / 2\n");
-    printf("                  %d(%d - 1) / 2 = %d\n",
-           inputSize,
-           inputSize,
-           inputSize * (inputSize - 1) / 2);
+       printf("\n");
 
-    printf("\n");
+       printf("Swaps           : %s\n", swapFormula);
 
-    /*======================================================*
-                    COMPLEXITY
-    *======================================================*/
+       printf("                  = %ld\n", theoreticalSwaps);
 
-    printf("---------- COMPLEXITY ----------\n");
+       printf("\n");
 
-    printf("\n");
+       /*======================================================*
+                     COMPLEXITY
+       *======================================================*/
 
-    printf("Best Case       : %s\n",bestCase);
-    printf("Average Case    : %s\n",averageCase);
-    printf("Worst Case      : %s\n",worstCase);
-    printf("Space           : %s\n",space);
+       printf("---------- COMPLEXITY ----------\n");
 
-    printf("\n");
-    printf("========================================\n");
+       printf("\n");
+
+       printf("Best Case       : %s\n",bestCase);
+       printf("Average Case    : %s\n",averageCase);
+       printf("Worst Case      : %s\n",worstCase);
+       printf("Space           : %s\n",space);
+
+       printf("\n");
+       printf("========================================\n");
 }
