@@ -9,6 +9,8 @@
 #include "doublyLinkedList.h"
 #include "dataSet.h"
 
+#include "cost.h"
+
 /*==========================================================
                     Selection Sort Page
 ==========================================================*/
@@ -50,10 +52,16 @@ void selectionPage(void){
     printf("\n");
 
     /*======================================================*
-                        Selection Sort
+                        Cost Tracking
     *======================================================*/
 
-    selectionSort(&head, &tail);
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
+    selectionSort(&head, &tail, &cost);
+
+    stopCostTimer(&cost);
 
     /*======================================================*
                         Sorted List
@@ -63,6 +71,28 @@ void selectionPage(void){
 
     printSortedListScreen(head);
 
+    pauseScreen();
+
+    /*======================================================*
+                        Cost Calculation
+    *======================================================*/
+
+    long theoreticalComparisons = (long)size * (size - 1) / 2;
+
+    long theoreticalSwaps = (long)size - 1;
+
+    displayCostAnalysis(cost,
+                        "Selection Sort",
+                        size,
+                        "n(n-1)/2",
+                        theoreticalComparisons,
+                        "n-1",
+                        theoreticalSwaps,
+                        "O(n^2)",
+                        "O(n^2)",
+                        "O(n^2)",
+                        "O(1)");
+
     freeList(head);
 }
 
@@ -71,7 +101,8 @@ void selectionPage(void){
 *==========================================================*/
 
 void selectionSort(struct Node **head,
-                   struct Node **tail){
+                   struct Node **tail,
+                   struct Cost *cost){
 
     int pass = 1;
 
@@ -112,9 +143,6 @@ void selectionSort(struct Node **head,
 
         while(scan != NULL){
 
-            printComparison(minNode->data,
-                            scan->data);
-
             drawList(*head,
                      minNode,
                      scan,
@@ -122,20 +150,24 @@ void selectionSort(struct Node **head,
                      NULL,
                      LIST_COMPARE);
 
-            delayScreen(800);
+            printComparison(minNode->data, scan->data);
+
+            countComparison(cost);
 
             if(scan->data < minNode->data){
 
                 minNode = scan;
 
-                printf("\n");
+                printf(COLOR_LOGO);
+                printf("  |  ");
 
                 printf(COLOR_ACCENT);
-                printf("New Minimum Found : %d\n",
+                printf("New Minimum Found : %d",
                        minNode->data);
                 printf(COLOR_RESET);
 
-                delayScreen(800);
+                printf("\n");
+
             }
 
             scan = scan->next;
@@ -155,6 +187,8 @@ void selectionSort(struct Node **head,
 
         printf(COLOR_RESET);
 
+        printf("\n");
+
         delayScreen(800);
 
         /*==================================================*
@@ -163,36 +197,37 @@ void selectionSort(struct Node **head,
 
         if(minNode != current){
 
-            printSwapRequired();
+            drawListInline(*head,
+                            current,
+                            minNode,
+                            LIST_BREAK);
 
-            drawList(*head,
-                     current,
-                     minNode,
-                     current,
-                     minNode,
-                     LIST_BREAK);
-
-            delayScreen(800);
+            printf(COLOR_LOGO);
+            printf("  |  ");
+            printf(COLOR_RESET);
 
             swapNodes(head,
                       tail,
                       current,
                       minNode);
 
+            countSwap(cost);
+
+            /* Relink visualization */
+            drawListInline(*head,
+                        minNode,
+                        current,
+                        LIST_RELINK);
+            printf("\n\n");
+
+            /* Final swapped list */
+            drawListInline(*head,
+                        minNode,
+                        current,
+                        LIST_SORTED);
+
             printf("\n");
 
-            printf(COLOR_SUCCESS);
-            printf("Pointers Swapped Successfully.\n");
-            printf(COLOR_RESET);
-
-            delayScreen(800);
-
-            drawList(*head,
-                     minNode,
-                     current,
-                     minNode,
-                     current,
-                     LIST_RELINK);
 
             delayScreen(800);
         }
@@ -210,6 +245,7 @@ void selectionSort(struct Node **head,
 
         current = minNode->next;
 
+        delayScreen(800);
         pass++;
     }
 }
