@@ -35,12 +35,18 @@ void bubblePage(void){
     head = createList(data, size);
     tail = findTail(head);
 
-    //Original List
+    /*======================================================*
+                            Original List
+    =======================================================*/
     printOriginalListScreen(head);
 
     pauseScreen();
 
     printf("\n\n");
+
+    /*======================================================
+                        Cost Tracking
+    ======================================================*/
 
     struct Cost cost = {0};  // Initialize cost structure
     startCostTimer(&cost);
@@ -49,17 +55,30 @@ void bubblePage(void){
 
     stopCostTimer(&cost);
 
-    //Sorted List
+    /*======================================================
+                            Sorted List
+    ======================================================*/
     printSortedListScreen(head);
 
     pauseScreen();
 
     printf("\n");
 
-    //Display Cost Analysis
+    /*======================================================
+                        Cost Analysis
+    ======================================================*/
+
+    long theoreticalComparisons = (long)size * (size - 1);
+
+    long theoreticalSwaps = (long)size * (size - 1) / 2;
+
     displayCostAnalysis(cost,
                         "Bubble Sort",
                         size,
+                        "n(n-1)",
+                        theoreticalComparisons,
+                        "n(n-1)/2",
+                        theoreticalSwaps,  
                         "O(n)",
                         "O(n^2)",
                         "O(n^2)",
@@ -116,6 +135,9 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
             countComparison(cost);
 
             if(current->data > current->next->data){
+
+                printf(COLOR_LOGO);
+                printf("  |  ");
 
                 printSwapRequired();
 
@@ -180,6 +202,10 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
             ==================================================*/
 
             else{
+
+                printf(COLOR_LOGO);
+                printf("  |  ");
+                
                 printNoSwap();
 
                 delayScreen(800);
