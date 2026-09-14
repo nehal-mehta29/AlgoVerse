@@ -68,14 +68,14 @@ void bubblePage(void){
                         Cost Analysis
     ======================================================*/
 
-    long theoreticalComparisons = (long)size * (size - 1);
+    long theoreticalComparisons = (long)size * (size - 1) / 2;
 
     long theoreticalSwaps = (long)size * (size - 1) / 2;
 
     displayCostAnalysis(cost,
                         "Bubble Sort",
                         size,
-                        "n(n-1)",
+                        "n(n-1)/2",
                         theoreticalComparisons,
                         "n(n-1)/2",
                         theoreticalSwaps,  
@@ -98,6 +98,9 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
     int pass = 1;
     int step;
 
+    int comparisons;
+    int passLimit = getDatasetSize() - 1;
+
     if(*head == NULL){
         return;
     }
@@ -107,10 +110,11 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
         swapped = 0;
         step = 1;
+        comparisons = 0;
 
         struct Node *current = *head;
 
-        while(current->next != NULL){
+        while(comparisons < passLimit){
 
             /*==================================================
                             Comparison
@@ -133,6 +137,8 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
             ==================================================*/
 
             countComparison(cost);
+
+            comparisons++;
 
             if(current->data > current->next->data){
 
@@ -193,7 +199,6 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
                 printf("\n");
 
-                swapped = 1;
 
             }
 
@@ -219,9 +224,10 @@ void bubbleSort(struct Node **head, struct Node **tail,struct Cost *cost){
 
         delayScreen(800);
 
+        passLimit--;
         pass++;
     }
     
-    while(swapped);
+    while(passLimit > 0 && swapped);
 
 }
