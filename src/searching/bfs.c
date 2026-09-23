@@ -7,6 +7,8 @@
 #include "colors.h"
 #include "dataSet.h"
 
+#include "cost.h"
+
 /*==========================================================
                 Breadth First Search Page
 ==========================================================*/
@@ -79,12 +81,40 @@ void bfsPage(void){
     printf("\n");
 
     /*======================================================*
-                    BFS Search
+                        Cost Tracking
     *======================================================*/
+
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
 
     int step = 1;
 
-    bfsSearch(root, key, &step);
+    bfsSearch(root, key, &step, &cost);
+
+    stopCostTimer(&cost);
+
+    pauseScreen();
+
+    /*======================================================*
+                        Cost Analysis
+    *======================================================*/
+
+    clearScreen();
+
+    printBreadcrumb("Home > Searching Algorithms > Breadth First Search > Cost Analysis");
+
+    long theoreticalComparisons = (long)size;
+
+    displaySearchCostAnalysis(cost,
+                              "Breadth First Search",
+                              size,
+                              "V + E (<= n)",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(V + E)",
+                              "O(V + E)",
+                              "O(w)");
 
     /*======================================================*
                     Free Tree
@@ -99,7 +129,8 @@ void bfsPage(void){
 
 struct TreeNode *bfsSearch(struct TreeNode *root,
                            int key,
-                           int *step){
+                           int *step,
+                           struct Cost *cost){
 
     struct TreeNode *queue[100];
 
@@ -194,6 +225,8 @@ struct TreeNode *bfsSearch(struct TreeNode *root,
 
         delayScreen(800);
 
+        countComparison(cost);
+        
         /*==================================================*
                     Element Found
         *==================================================*/
