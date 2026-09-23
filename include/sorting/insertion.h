@@ -3,6 +3,7 @@
 
 #include "doublyLinkedList.h"
 
+#include "cost.h"
 /*==========================================================
                     Insertion Sort Page
 ==========================================================*/
@@ -14,6 +15,7 @@ void insertionPage(void);
 *==========================================================*/
 
 void insertionSort(struct Node **head,
-                   struct Node **tail);
+                   struct Node **tail,
+                   struct Cost *Cost);
 
 #endif

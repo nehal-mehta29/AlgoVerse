@@ -9,6 +9,8 @@
 #include "doublyLinkedList.h"
 #include "dataSet.h"
 
+#include "cost.h"
+
 /*==========================================================
                     Insertion Sort Page
 ==========================================================*/
@@ -50,10 +52,17 @@ void insertionPage(void){
     printf("\n");
 
     /*======================================================*
-                    Insertion Sort
+                        Cost Tracking
     *======================================================*/
 
-    insertionSort(&head, &tail);
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
+    insertionSort(&head, &tail, &cost);
+
+    stopCostTimer(&cost);
+
 
     /*======================================================*
                         Sorted List
@@ -63,6 +72,32 @@ void insertionPage(void){
 
     printSortedListScreen(head);
 
+    pauseScreen();
+
+    printf("\n");
+
+    /*======================================================
+                        Cost Analysis
+    ======================================================*/
+
+    long theoreticalComparisons = (long)size * (size - 1) / 2;
+
+    long theoreticalSwaps = (long)size * (size - 1) / 2;
+
+    displayCostAnalysis(cost,
+                        "Insertion Sort",
+                        size,
+                        "n(n-1)/2",
+                        theoreticalComparisons,
+                        "n(n-1)/2",
+                        theoreticalSwaps,
+                        "O(n)",
+                        "O(n^2)",
+                        "O(n^2)",
+                        "O(1)");
+
+    printf("\n");
+
     freeList(head);
 }
 
@@ -71,9 +106,11 @@ void insertionPage(void){
 *==========================================================*/
 
 void insertionSort(struct Node **head,
-                   struct Node **tail){
+                   struct Node **tail,
+                   struct Cost *cost){
 
-    int step = 1;
+    int pass = 1;
+    int step;
 
     if(*head == NULL || (*head)->next == NULL){
         return;
@@ -83,145 +120,102 @@ void insertionSort(struct Node **head,
 
     while(current != NULL){
 
+        printPassHeader("Insertion Sort", pass);
+
         struct Node *nextNode = current->next;
-        struct Node *position = current->prev;
+        struct Node *keyNode = current;
 
-        /*==================================================*
-                            Step Header
-        *==================================================*/
+        step = 1;
 
-        printf("\n");
+        while(keyNode->prev != NULL){
 
-        printPassHeader("Insertion Sort", step);
+            printStep(step, pass);
 
-        printf("\n");
-
-        printf(COLOR_LOGO);
-        printf("Current Node : ");
-
-        printf(COLOR_CURRENT);
-        printf("%d\n", current->data);
-
-        printf(COLOR_RESET);
-
-        delayScreen(800);
-
-        /*==================================================*
-                        Find Insertion Position
-        *==================================================*/
-
-        while(position != NULL &&
-              position->data > current->data){
-
-            printComparison(position->data,
-                            current->data);
+            /*==================================================
+                            Comparison
+            ==================================================*/
 
             drawList(*head,
-                     position,
-                     current,
-                     NULL,
-                     NULL,
+                     keyNode->prev,
+                     keyNode,
+                     keyNode->prev,
+                     keyNode,
                      LIST_COMPARE);
 
-            delayScreen(800);
+            printComparison(keyNode->prev->data,
+                            keyNode->data);
 
-            position = position->prev;
-        }
+            countComparison(cost);
 
-        /*==================================================*
-                        Correct Position
-        *==================================================*/
+            /*==================================================
+                            Swap Required
+            ==================================================*/
 
-        if(position == current->prev){
+            if(keyNode->prev->data > keyNode->data){
 
-            printNoSwap();
+                printf(COLOR_LOGO);
+                printf("  |  ");
 
-            delayScreen(800);
-        }
+                printSwapRequired();
 
-        else{
+                printf("\n");
 
-            printSwapRequired();
+                /* Break Visualization */
+                drawListInline(*head,
+                               keyNode->prev,
+                               keyNode,
+                               LIST_BREAK);
 
-            drawList(*head,
-                     position,
-                     current,
-                     position,
-                     current,
-                     LIST_BREAK);
+                printf(COLOR_LOGO);
+                printf("  |  ");
+                printf(COLOR_RESET);
 
-            delayScreen(800);
+                /* Swap Adjacent Nodes */
+                swapAdjacent(head,
+                             tail,
+                             keyNode->prev,
+                             keyNode);
 
-            /* Move current node to its correct position */
+                countSwap(cost);
 
-            if(position == NULL){
+                /* Relink Visualization */
+                drawListInline(*head,
+                               keyNode,
+                               keyNode->next,
+                               LIST_RELINK);
 
-                /* Move node to the beginning */
+                printf("\n\n");
 
-                struct Node *before = current->prev;
-                struct Node *after = current->next;
+                /* Final Swapped List for Current Step */
+                drawListInline(*head,
+                               keyNode,
+                               keyNode->next,
+                               LIST_SORTED);
 
-                if(before != NULL)
-                    before->next = after;
+                printf("\n\n");
 
-                if(after != NULL)
-                    after->prev = before;
-                else
-                    *tail = before;
-
-                current->prev = NULL;
-                current->next = *head;
-
-                (*head)->prev = current;
-
-                *head = current;
+                delayScreen(800);
+                step++;
             }
+
+            /*==================================================
+                            No Swap (In Correct Place)
+            ==================================================*/
 
             else{
 
-                struct Node *before = current->prev;
-                struct Node *after = current->next;
+                printf(COLOR_LOGO);
+                printf("  |  ");
 
-                if(before != NULL)
-                    before->next = after;
+                printNoSwap();
 
-                if(after != NULL)
-                    after->prev = before;
-                else
-                    *tail = before;
-
-                current->prev = position;
-                current->next = position->next;
-
-                if(position->next != NULL)
-                    position->next->prev = current;
-
-                position->next = current;
+                delayScreen(800);
+                break;
             }
-
-            printf("\n");
-
-            printf(COLOR_SUCCESS);
-            printf("Node Inserted Successfully.\n");
-            printf(COLOR_RESET);
-
-            delayScreen(800);
-
-            /*==================================================*
-                    Show Reconnected List
-            *==================================================*/
-
-            drawList(*head,
-                     current,
-                     position,
-                     current,
-                     position,
-                     LIST_RELINK);
-
-            delayScreen(800);
         }
 
+        delayScreen(800);
         current = nextNode;
-        step++;
+        pass++;
     }
 }
