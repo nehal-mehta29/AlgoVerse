@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #include "sorting/quick.h"
 #include "sorting/swap.h"
@@ -8,6 +9,8 @@
 #include "colors.h"
 #include "doublyLinkedList.h"
 #include "dataSet.h"
+
+#include "cost.h"
 
 /*==========================================================
                     Quick Sort Page
@@ -50,10 +53,16 @@ void quickPage(void){
     printf("\n");
 
     /*======================================================*
-                        Quick Sort
+                        Cost Tracking
     *======================================================*/
 
-    quickSort(&head, &tail);
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
+    quickSort(&head, &tail, &cost);
+
+    stopCostTimer(&cost);
 
     /*======================================================*
                         Sorted List
@@ -62,6 +71,26 @@ void quickPage(void){
     printf("\n");
 
     printSortedListScreen(head);
+
+    pauseScreen();
+
+    /*======================================================*
+                        Cost Analysis
+    *======================================================*/
+    long theoreticalComparisons = (size > 1) ? (long)(size * (log(size) / log(2))) : 0;
+    long theoreticalSwaps = (size > 1) ? (long)(theoreticalComparisons / 2) : 0;
+
+    displayCostAnalysis(cost,
+                        "Quick Sort",
+                        size,
+                        "n log2(n)",
+                        theoreticalComparisons,
+                        "n/2 log2(n)",
+                        theoreticalSwaps,
+                        "O(n log n)",
+                        "O(n log n)",
+                        "O(n^2)",
+                        "O(log n)");
 
     freeList(head);
 }
@@ -73,7 +102,8 @@ void quickPage(void){
 struct Node *partition(struct Node **head,
                        struct Node **tail,
                        struct Node *low,
-                       struct Node *high){
+                       struct Node *high,
+                       struct Cost *cost){
 
     struct Node *i = NULL;
     struct Node *j = low;
@@ -112,6 +142,10 @@ struct Node *partition(struct Node **head,
         printf("\n");
 
         printComparison(j->data, pivot);
+
+        countComparison(cost);
+
+        printf("\n");
 
         drawList(*head,
                  j,
@@ -187,6 +221,7 @@ struct Node *partition(struct Node **head,
                           target,
                           j);
 
+                countSwap(cost);
                 /*------------------------------------------*
                                 Relink
                 *------------------------------------------*/
@@ -300,6 +335,8 @@ struct Node *partition(struct Node **head,
                   target,
                   high);
 
+        countSwap(cost);
+
         /*------------------------------------------*
                     Relink + Pivot Highlight
         *------------------------------------------*/
@@ -337,7 +374,8 @@ struct Node *partition(struct Node **head,
 void quickSortRec(struct Node **head,
                   struct Node **tail,
                   struct Node *low,
-                  struct Node *high){
+                  struct Node *high,
+                  struct Cost *cost){
 
     if(high == NULL ||
        low == NULL ||
@@ -362,7 +400,8 @@ void quickSortRec(struct Node **head,
         partition(head,
                   tail,
                   low,
-                  high);
+                  high,
+                  cost);
 
     /*======================================================*
                     Find New Boundaries
@@ -417,7 +456,8 @@ void quickSortRec(struct Node **head,
         quickSortRec(head,
                      tail,
                      newLow,
-                     pivot->prev);
+                     pivot->prev,
+                     cost);
     }
 
     /*======================================================*
@@ -438,7 +478,8 @@ void quickSortRec(struct Node **head,
         quickSortRec(head,
                      tail,
                      pivot->next,
-                     newHigh);
+                     newHigh,
+                     cost);
     }
 }
 
@@ -447,7 +488,8 @@ void quickSortRec(struct Node **head,
 *==========================================================*/
 
 void quickSort(struct Node **head,
-               struct Node **tail){
+               struct Node **tail,
+               struct Cost *cost){
 
     if(*head == NULL || (*head)->next == NULL){
         return;
@@ -478,7 +520,8 @@ void quickSort(struct Node **head,
     quickSortRec(head,
                  tail,
                  *head,
-                 high);
+                 high,
+                 cost);
 
     /*======================================================*
                     Restore Head / Tail
