@@ -176,8 +176,6 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
                         Comparison
         *==================================================*/
 
-        countComparison(cost);
-
         printf("\n");
 
         if(key == current->data){
@@ -212,6 +210,8 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
 
             return current;
         }
+
+        countComparison(cost);
 
         /*==================================================*
                         Move Left
