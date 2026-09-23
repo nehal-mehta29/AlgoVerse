@@ -123,3 +123,60 @@ void displayCostAnalysis(struct Cost cost,
        printf("\n");
        printf("========================================\n");
 }
+
+/*==========================================================*
+                Display Search Cost Analysis
+*==========================================================*/
+
+void displaySearchCostAnalysis(struct Cost cost,
+                               const char *algorithm,
+                               int inputSize,
+                               const char *comparisonFormula,
+                               long theoreticalComparisons,
+                               const char *bestCase,
+                               const char *averageCase,
+                               const char *worstCase,
+                               const char *space){
+
+    printf("\n");
+    printf("========================================\n");
+    printf("          %s COST ANALYSIS\n", algorithm);
+    printf("========================================\n");
+
+    printf("\n");
+    printf("Algorithm       : %s\n", algorithm);
+    printf("Input Size      : %d\n", inputSize);
+
+    printf("\n");
+
+    /*======================================================*
+                            ACTUAL COST
+    *======================================================*/
+
+    printf("---------- ACTUAL COST ----------\n\n");
+    printf("Execution Time  : %.3f ms\n", cost.executionTime);
+    printf("Comparisons     : %ld\n", cost.comparisons);
+
+    /*======================================================*
+                         THEORETICAL COST
+    *======================================================*/
+
+    printf("\n");
+    printf("------ THEORETICAL COST ------\n\n");
+    printf("Comparisons     : %s\n", comparisonFormula);
+    printf("                  = %ld\n", theoreticalComparisons);
+
+    /*======================================================*
+                            COMPLEXITY
+    *======================================================*/
+
+    printf("\n");
+    printf("---------- COMPLEXITY ----------\n\n");
+    printf("Best Case       : %s\n", bestCase);
+    printf("Average Case    : %s\n", averageCase);
+    printf("Worst Case      : %s\n", worstCase);
+    printf("Space           : %s\n", space);
+
+    printf("\n");
+    printf("========================================\n");
+}

@@ -50,4 +50,14 @@ void displayCostAnalysis(struct Cost cost,
                          const char *worstCase,
                          const char *space);
 
+void displaySearchCostAnalysis(struct Cost cost,
+                               const char *algorithm,
+                               int inputSize,
+                               const char *comparisonFormula,
+                               long theoreticalComparisons,
+                               const char *bestCase,
+                               const char *averageCase,
+                               const char *worstCase,
+                               const char *space);
+
 #endif
