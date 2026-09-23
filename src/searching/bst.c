@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #include "searching/bst.h"
 #include "searching/binaryTree.h"
@@ -6,6 +7,8 @@
 #include "utils.h"
 #include "colors.h"
 #include "dataSet.h"
+
+#include "cost.h"
 
 /*==========================================================
                 Binary Search Tree Page
@@ -80,10 +83,33 @@ void bstPage(void){
     printf("\n");
 
     /*======================================================*
-                        BST Search
+                        Cost Tracking
     *======================================================*/
 
-    searchBST(root, key);
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
+    searchBST(root, key, &cost);
+
+    stopCostTimer(&cost);
+
+    pauseScreen();
+    
+    /*======================================================*
+                        Cost Analysis
+    *======================================================*/
+    long theoreticalComparisons = (size > 0) ? (long)(log(size) / log(2)) + 1 : 0;
+
+    displaySearchCostAnalysis(cost,
+                              "Binary Search Tree",
+                              size,
+                              "log2(n) + 1",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(log n)",
+                              "O(n)",
+                              "O(h)");
 
     /*======================================================*
                         Free Tree
@@ -96,7 +122,7 @@ void bstPage(void){
                         BST Search
 *==========================================================*/
 
-struct TreeNode *searchBST(struct TreeNode *root, int key){
+struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
 
     int step = 1;
 
@@ -149,6 +175,8 @@ struct TreeNode *searchBST(struct TreeNode *root, int key){
         /*==================================================*
                         Comparison
         *==================================================*/
+
+        countComparison(cost);
 
         printf("\n");
 
