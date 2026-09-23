@@ -10,6 +10,8 @@
 #include "utils.h"
 #include "colors.h"
 
+#include "cost.h"
+
 static int step = 1;
 
 /*==========================================================
@@ -98,10 +100,20 @@ void jumpPage(void){
 
     printf("\n");
 
+    /*======================================================
+                        Cost Tracking
+    ======================================================*/
+
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+    
     index = jumpSearch(arr,
                        size,
-                       key);
+                       key,
+                       &cost);
 
+    stopCostTimer(&cost);
     printf("\n");
 
     if(index != -1){
@@ -116,6 +128,23 @@ void jumpPage(void){
         printf(COLOR_RESET);
     }
 
+    pauseScreen();
+
+    /*======================================================
+                        Cost Analysis
+    ======================================================*/
+    long theoreticalComparisons = (size > 0) ? (long)(sqrt(size) + sqrt(size)) : 0;
+
+    displaySearchCostAnalysis(cost,
+                              "Jump Search",
+                              size,
+                              "2 * sqrt(n)",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(sqrt(n))",
+                              "O(sqrt(n))",
+                              "O(1)");
+
     free(arr);
 }
 
@@ -125,7 +154,8 @@ void jumpPage(void){
 
 int jumpSearch(int arr[],
                int size,
-               int key){
+               int key,
+               struct Cost *cost){
 
     int stepSize = (int)sqrt(size);
 
@@ -153,6 +183,8 @@ int jumpSearch(int arr[],
         printSearchComparison(arr[(next < size ? next : size) - 1],
                               key,
                               "<");
+
+        countComparison(cost);
 
         printSearchDirection("Jumping Forward...");
 
@@ -189,6 +221,8 @@ int jumpSearch(int arr[],
 
     printCurrentRange(prev,
                     blockEnd);
+
+    countComparison(cost);
 
     if(arr[blockEnd] == key){
 
@@ -241,6 +275,8 @@ int jumpSearch(int arr[],
 
         printCurrentIndex(prev);
 
+        countComparison(cost);
+        
         printSearchComparison(arr[prev],
                               key,
                               (arr[prev] == key) ? "==" : "!=");
