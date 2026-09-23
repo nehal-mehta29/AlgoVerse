@@ -7,6 +7,8 @@
 #include "colors.h"
 #include "dataSet.h"
 
+#include "cost.h"
+
 /*==========================================================
                 Depth First Search Page
 ==========================================================*/
@@ -78,12 +80,42 @@ void dfsPage(void){
     printf("\n");
 
     /*======================================================*
-                    DFS Search
+                        Cost Tracking
     *======================================================*/
+
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
 
     int step = 1;
 
-    dfsSearch(root, key, &step, root);
+    struct TreeNode *found = dfsSearch(root, key, &step, root, &cost);
+
+    stopCostTimer(&cost);
+
+    if(!found){
+        printf("\n");
+        printf(COLOR_ERROR);
+        printf("Element Not Found.\n");
+        printf(COLOR_RESET);
+    }
+
+    pauseScreen();
+
+    /*======================================================*
+                        Cost Analysis
+    *======================================================*/
+    long theoreticalComparisons = (long)size;
+
+    displaySearchCostAnalysis(cost,
+                              "Depth First Search",
+                              size,
+                              "V + E (<= n)",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(V + E)",
+                              "O(V + E)",
+                              "O(h)");
 
     /*======================================================*
                     Free Tree
@@ -99,7 +131,8 @@ void dfsPage(void){
 struct TreeNode *dfsSearch(struct TreeNode *root,
                            int key,
                            int *step,
-                           struct TreeNode *treeRoot){
+                           struct TreeNode *treeRoot,
+                           struct Cost *cost){
 
     struct TreeNode *result;
 
@@ -139,6 +172,8 @@ struct TreeNode *dfsSearch(struct TreeNode *root,
     printf(COLOR_RESET);
 
     delayScreen(800);
+
+    countComparison(cost);
 
     /*======================================================*
                     Element Found
@@ -196,7 +231,8 @@ struct TreeNode *dfsSearch(struct TreeNode *root,
     result = dfsSearch(root->left,
                        key,
                        step,
-                       treeRoot);
+                       treeRoot,
+                       cost);
 
     if(result != NULL){
 
@@ -210,7 +246,8 @@ struct TreeNode *dfsSearch(struct TreeNode *root,
     result = dfsSearch(root->right,
                        key,
                        step, 
-                       treeRoot);
+                       treeRoot,
+                       cost);
 
     if(result != NULL){
 
