@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 #include "sorting/merge.h"
 #include "sorting/sortingUI.h"
@@ -8,6 +9,8 @@
 #include "colors.h"
 #include "doublyLinkedList.h"
 #include "dataSet.h"
+
+#include "cost.h"
 
 /*==========================================================
                     Merge Sort Page
@@ -49,11 +52,17 @@ void mergePage(void){
 
     printf("\n");
 
-    /*======================================================*
-                        Merge Sort
-    *======================================================*/
+    /*======================================================
+                        Cost Tracking
+    ======================================================*/
 
-    mergeSort(&head, &tail);
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
+    mergeSort(&head, &tail, &cost);
+
+    stopCostTimer(&cost);
 
     /*======================================================*
                         Sorted List
@@ -62,6 +71,29 @@ void mergePage(void){
     printf("\n");
 
     printSortedListScreen(head);
+
+    freeList(head);
+
+    /*======================================================
+                        Cost Analysis
+    ======================================================*/
+
+    pauseScreen();
+
+    long theoreticalComparisons = (size > 1) ? (long)(size * (log(size) / log(2))) : 0;
+    long theoreticalSwaps = (size > 1) ? (long)(size * (log(size) / log(2))) : 0;
+
+    displayCostAnalysis(cost,
+                        "Merge Sort",
+                        size,
+                        "n log2(n)",
+                        theoreticalComparisons,
+                        "n log2(n)",
+                        theoreticalSwaps,
+                        "O(n log n)",
+                        "O(n log n)",
+                        "O(n log n)",
+                        "O(n)");
 
     freeList(head);
 }
@@ -91,7 +123,8 @@ int findLength(struct Node *head){
 *==========================================================*/
 
 void mergeSort(struct Node **head,
-               struct Node **tail){
+               struct Node **tail,
+               struct Cost *cost){
 
     if(*head == NULL || (*head)->next == NULL){
         return;
@@ -117,6 +150,10 @@ void mergeSort(struct Node **head,
         printComparison(first->data,
                         second->data);
 
+        countComparison(cost);
+
+        printf("\n");
+
         drawList(*head,
                 first,
                 second,
@@ -126,12 +163,15 @@ void mergeSort(struct Node **head,
 
         delayScreen(800);
 
+        printf("\n");
+
         /*==================================================*
                         Swap Required
         *==================================================*/
 
         if(first->data > second->data){
 
+            printf("\n");
             printSwapRequired();
 
             /*----------------------------------------------*
@@ -156,6 +196,8 @@ void mergeSort(struct Node **head,
                         first,
                         second);
 
+            countSwap(cost);
+            
             /*----------------------------------------------*
                         Relinked Nodes
             *----------------------------------------------*/
@@ -215,20 +257,20 @@ void mergeSort(struct Node **head,
                     Recursively Sort First Half
     *======================================================*/
 
-    mergeSort(head, &firstTail);
+    mergeSort(head, &firstTail, cost);
 
     /*======================================================*
                     Recursively Sort Second Half
     *======================================================*/
 
-    mergeSort(&secondHalf, &secondTail);
+    mergeSort(&secondHalf, &secondTail, cost);
 
     /*======================================================*
                             Merge
     *======================================================*/
 
     struct Node *merged =
-        mergeLists(*head, secondHalf);
+        mergeLists(*head, secondHalf, cost);
 
     /*======================================================*
                     Update Head and Tail
@@ -359,7 +401,8 @@ struct Node *splitList(struct Node *head,
 *==========================================================*/
 
 struct Node *mergeLists(struct Node *first,
-                        struct Node *second){
+                        struct Node *second,
+                        struct Cost *cost){
 
     struct Node *result = NULL;
     struct Node *tail = NULL;
@@ -379,6 +422,10 @@ struct Node *mergeLists(struct Node *first,
         printComparison(first->data,
                         second->data);
 
+        countComparison(cost);
+
+        printf("\n");
+        
         drawList(first,
                  first,
                  second,
@@ -409,6 +456,7 @@ struct Node *mergeLists(struct Node *first,
         selected->prev = NULL;
         selected->next = NULL;
 
+        countSwap(cost);
         /*==================================================*
                     Add To Result List
         *==================================================*/
@@ -454,6 +502,8 @@ struct Node *mergeLists(struct Node *first,
         selected->prev = NULL;
         selected->next = NULL;
 
+        countSwap(cost);
+        
         if(result == NULL){
 
             result = selected;
@@ -483,6 +533,8 @@ struct Node *mergeLists(struct Node *first,
 
         selected->prev = NULL;
         selected->next = NULL;
+
+        countSwap(cost);
 
         if(result == NULL){
 
