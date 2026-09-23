@@ -8,6 +8,8 @@
 #include "utils.h"
 #include "colors.h"
 
+#include "cost.h"
+
 static int step = 1;
 
 /*==========================================================
@@ -29,7 +31,7 @@ void linearPage(void){
 
     printDivider("Linear Search");
 
-     data = getDataset();
+    data = getDataset();
     size = getDatasetSize();
 
     arr = (int *)malloc(size * sizeof(int));
@@ -45,7 +47,7 @@ void linearPage(void){
 
 /*======================================================
                     Copy Dataset
-    ======================================================*/
+========================================================*/
 
     for(int i = 0; i < size; i++){
         arr[i] = data[i];
@@ -53,7 +55,7 @@ void linearPage(void){
 
 /*======================================================
                 Display Original Array
-    ======================================================*/
+========================================================*/
 
     printOriginalArrayScreen(arr, size);
 
@@ -65,9 +67,20 @@ void linearPage(void){
 
     scanf("%d", &key);
 
+    /*======================================================
+                        Cost Tracking
+    ======================================================*/
+
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
     index = linearSearch(arr,
                          size,
-                         key);
+                         key,
+                         &cost);
+
+    stopCostTimer(&cost);
 
     printf("\n");
 
@@ -85,6 +98,23 @@ void linearPage(void){
         printf(COLOR_RESET);
     }
 
+    pauseScreen();
+
+    /*======================================================
+                        Cost Analysis
+    ======================================================*/
+    long theoreticalComparisons = (long)size;
+
+    displaySearchCostAnalysis(cost,
+                              "Linear Search",
+                              size,
+                              "n",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(n)",
+                              "O(n)",
+                              "O(1)");
+
     free(arr);
 }
 
@@ -94,7 +124,8 @@ void linearPage(void){
 
 int linearSearch(int arr[],
                  int size,
-                 int key){
+                 int key,
+                 struct Cost *cost){
 
     for(int i = 0; i < size; i++){
 
@@ -114,6 +145,8 @@ int linearSearch(int arr[],
         printSearchComparison(arr[i],
                               key,
                               (arr[i] == key) ? "==" : "!=");
+
+        countComparison(cost);
 
         if(arr[i] == key){
 

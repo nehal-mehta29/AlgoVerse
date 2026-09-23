@@ -1,6 +1,8 @@
 #ifndef LINEAR_H
 #define LINEAR_H
 
+#include "cost.h"
+
 /*==========================================================
                 Linear Search Page
 ==========================================================*/
@@ -13,6 +15,7 @@ void linearPage(void);
 
 int linearSearch(int arr[],
                  int size,
-                 int key);
+                 int key,
+                 struct Cost *cost);
 
 #endif
