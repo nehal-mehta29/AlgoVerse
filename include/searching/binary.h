@@ -1,6 +1,8 @@
 #ifndef BINARY_H
 #define BINARY_H
 
+#include "cost.h"
+
 /*==========================================================
                     Binary Search Page
 ==========================================================*/
@@ -14,6 +16,7 @@ void binaryPage(void);
 int binarySearch(int arr[],
                  int low,
                  int high,
-                 int key);
+                 int key,
+                 struct Cost *cost);
 
 #endif

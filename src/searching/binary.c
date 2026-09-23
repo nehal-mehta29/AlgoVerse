@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "searching/searchSort.h"
 #include "searching/binary.h"
@@ -8,6 +9,8 @@
 #include "utils.h"
 #include "colors.h"
 #include "dataSet.h"
+
+#include "cost.h"
 
 static int step = 1;
 
@@ -103,9 +106,19 @@ void binaryPage(void){
 
     scanf("%d", &key);
 
+    /*==========================================================
+                        Cost Tracking
+    ==========================================================*/
+
+    struct Cost cost = {0};
+
+    startCostTimer(&cost);
+
     int index;
 
-    index = binarySearch(arr, 0, size - 1, key);
+    index = binarySearch(arr, 0, size - 1, key, &cost);
+
+    stopCostTimer(&cost);
 
     printf("\n");
 
@@ -123,6 +136,23 @@ void binaryPage(void){
         printf(COLOR_RESET);
     }
 
+    pauseScreen();
+
+    /*==========================================================
+                        Cost Analysis
+    ==========================================================*/
+    long theoreticalComparisons = (size > 0) ? (long)(log(size) / log(2)) + 1 : 0;
+
+    displaySearchCostAnalysis(cost,
+                              "Binary Search",
+                              size,
+                              "log2(n) + 1",
+                              theoreticalComparisons,
+                              "O(1)",
+                              "O(log n)",
+                              "O(log n)",
+                              "O(1)");
+
     free(arr);
 }
 
@@ -130,7 +160,7 @@ void binaryPage(void){
                 Recursive Binary Search
 ==========================================================*/
 
-int binarySearch(int arr[], int low, int high, int key){
+int binarySearch(int arr[], int low, int high, int key, struct Cost *cost){
 
     if(low > high){
         return -1;
@@ -162,6 +192,8 @@ int binarySearch(int arr[], int low, int high, int key){
                         Comparison
     ======================================================*/
 
+    countComparison(cost);
+    
     if(arr[mid] == key){
 
         printSearchComparison(arr[mid], key, "==");
@@ -191,7 +223,7 @@ int binarySearch(int arr[], int low, int high, int key){
 
         delayScreen(800);
 
-        return binarySearch(arr, mid + 1, high, key);
+        return binarySearch(arr, mid + 1, high, key, cost);
     }
 
     else{
@@ -202,6 +234,6 @@ int binarySearch(int arr[], int low, int high, int key){
 
         delayScreen(800);
 
-        return binarySearch(arr, low, mid - 1, key);
+        return binarySearch(arr, low, mid - 1, key, cost);
     }
 }
