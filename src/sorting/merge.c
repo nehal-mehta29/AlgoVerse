@@ -159,8 +159,6 @@ void mergeSort(struct Node **head,
                 NULL,
                 LIST_COMPARE);
 
-        //delayScreen(800);
-
         printf("\n");
 
         /*==================================================*
@@ -183,8 +181,6 @@ void mergeSort(struct Node **head,
                     second,
                     LIST_BREAK);
 
-            //delayScreen(800);
-
             /*----------------------------------------------*
                         Swap Nodes
             *----------------------------------------------*/
@@ -206,15 +202,10 @@ void mergeSort(struct Node **head,
                     second,
                     first,
                     LIST_RELINK);
-
-            //delayScreen(800);
         }
 
         else{
-
             printNoSwap();
-
-            //delayScreen(800);
         }
 
         return;
@@ -331,8 +322,6 @@ struct Node *splitList(struct Node *head,
 
     printf(COLOR_RESET);
 
-    //delayScreen(800);
-
     printf("\n");
 
     if(secondHalf != NULL){
@@ -343,7 +332,6 @@ struct Node *splitList(struct Node *head,
             secondHalf->data);
         printf(COLOR_RESET);
 
-        //delayScreen(800);
     }
 
     middle->next = NULL;
@@ -368,8 +356,6 @@ struct Node *splitList(struct Node *head,
              NULL,
              NULL,
              LIST_COMPARE);
-
-    //delayScreen(800);
 
     /*======================================================*
                         Show Second Half
@@ -430,8 +416,6 @@ struct Node *mergeLists(struct Node *first,
                  NULL,
                  NULL,
                  LIST_COMPARE);
-
-        //delayScreen(800);
 
         struct Node *selected;
 
@@ -515,8 +499,6 @@ struct Node *mergeLists(struct Node *first,
 
             tail = selected;
         }
-
-        //delayScreen(800);
     }
 
     /*======================================================*
@@ -548,7 +530,6 @@ struct Node *mergeLists(struct Node *first,
             tail = selected;
         }
 
-        //delayScreen(800);
     }
 
     return result;
