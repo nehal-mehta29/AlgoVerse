@@ -43,9 +43,9 @@ void insertionPage(void){
                         Original List
     *======================================================*/
 
-    printf("\n");
-
     printOriginalListScreen(head);
+
+    printf("\n");
 
     pauseScreen();
 

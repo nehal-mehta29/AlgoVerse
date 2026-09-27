@@ -43,8 +43,6 @@ void selectionPage(void){
                             Original List
     *======================================================*/
 
-    printf("\n");
-
     printOriginalListScreen(head);
 
     pauseScreen();
@@ -135,8 +133,6 @@ void selectionSort(struct Node **head,
 
         printf(COLOR_RESET);
 
-        delayScreen(800);
-
         /*==================================================*
                             Find Minimum
         *==================================================*/
@@ -189,8 +185,6 @@ void selectionSort(struct Node **head,
 
         printf("\n");
 
-        delayScreen(800);
-
         /*==================================================*
                                 Swap
         *==================================================*/
@@ -227,16 +221,10 @@ void selectionSort(struct Node **head,
                         LIST_SORTED);
 
             printf("\n");
-
-
-            delayScreen(800);
         }
 
         else{
-
             printNoSwap();
-
-            delayScreen(800);
         }
 
         /*==================================================*

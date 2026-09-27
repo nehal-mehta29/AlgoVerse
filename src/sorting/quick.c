@@ -40,11 +40,9 @@ void quickPage(void){
     head = createList(data, size);
     tail = findTail(head);
 
-    /*======================================================*
+    /*======================================================* 
                         Original List
     *======================================================*/
-
-    printf("\n");
 
     printOriginalListScreen(head);
 
