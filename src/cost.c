@@ -58,10 +58,10 @@ void displayCostAnalysis(struct Cost cost,
                          const char *space){
 
        printf("\n");
-       printf("========================================\n");
+       printf("====================================================\n");
        printf("          %s COST ANALYSIS\n",
               algorithm);
-       printf("========================================\n");
+       printf("====================================================\n");
 
        printf("\n");
 
