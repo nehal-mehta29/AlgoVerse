@@ -9,7 +9,7 @@
 ==========================================================*/
 
 void splashScreen(void){
-    printf(COLOR_LOGO);
+    printf(STYLE_BOLD COLOR_LOGO);
 
     printf("\n");
     printf("     _    _     ____   ___ __     __ _____ ____  ____ _____\n");
@@ -22,7 +22,7 @@ void splashScreen(void){
 
     printf("\n");
 
-    printf(COLOR_TEXT);
+    printf(STYLE_BOLD COLOR_TEXT);
     printf("             Visualize * Analyze * Understand\n");
     printf(COLOR_RESET);
 

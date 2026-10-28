@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "cost.h"
+#include "colors.h"
 
 /*==========================================================*
                     Start Timer
@@ -58,15 +59,22 @@ void displayCostAnalysis(struct Cost cost,
                          const char *space){
 
        printf("\n");
+
+       printf(COLOR_BORDER);
        printf("====================================================\n");
-       printf("          %s COST ANALYSIS\n",
-              algorithm);
+       printf(COLOR_LOGO STYLE_BOLD);
+       printf("          %s COST ANALYSIS\n", algorithm);
+       printf(COLOR_BORDER);
        printf("====================================================\n");
+       printf(COLOR_RESET);
 
        printf("\n");
 
-       printf("Algorithm       : %s\n", algorithm);
-       printf("Input Size      : %d\n", inputSize);
+       printf(COLOR_ACCENT "Algorithm       : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", algorithm);
+
+       printf(COLOR_ACCENT "Input Size      : " COLOR_RESET);
+       printf(COLOR_TEXT "%d\n", inputSize);
 
        printf("\n");
 
@@ -74,54 +82,77 @@ void displayCostAnalysis(struct Cost cost,
                             ACTUAL COST
        *======================================================*/
 
-       printf("---------- ACTUAL COST ----------\n");
+       printf("\n");
+
+       printf(COLOR_BORDER "---------- " COLOR_RESET);
+       printf(COLOR_LOGO STYLE_BOLD "ACTUAL COST" COLOR_RESET);
+       printf(COLOR_BORDER " ----------\n" COLOR_RESET);
 
        printf("\n");
 
-       printf("Execution Time  : %.3f ms\n",
-              cost.executionTime);
+       printf(COLOR_ACCENT "Execution Time  : " COLOR_RESET);
+       printf(COLOR_TEXT "%.3f ms\n", cost.executionTime);
 
-       printf("Comparisons     : %ld\n",
-              cost.comparisons);
+       printf(COLOR_ACCENT "Comparisons     : " COLOR_RESET);
+       printf(COLOR_TEXT "%ld\n", cost.comparisons);
 
-       printf("Swaps           : %ld\n",
-              cost.swaps);
+       printf(COLOR_ACCENT "Swaps           : " COLOR_RESET);
+       printf(COLOR_TEXT "%ld\n", cost.swaps);
        
        /*======================================================*
                      THEORETICAL COST
        *======================================================*/
 
        printf("\n");
-       printf("------ THEORETICAL COST ------\n");
-       printf("\n");
 
-       printf("Comparisons     : %s\n", comparisonFormula);
-
-       printf("                  = %ld\n", theoreticalComparisons);
+       printf(COLOR_BORDER "-------- " COLOR_RESET);
+       printf(COLOR_LOGO STYLE_BOLD "THEORETICAL COST" COLOR_RESET);
+       printf(COLOR_BORDER " --------\n" COLOR_RESET);
 
        printf("\n");
 
-       printf("Swaps           : %s\n", swapFormula);
+       printf(COLOR_ACCENT "Comparisons     : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", comparisonFormula);
 
-       printf("                  = %ld\n", theoreticalSwaps);
+       printf(COLOR_ACCENT "                  = " COLOR_RESET);
+       printf(COLOR_TEXT "%ld\n", theoreticalComparisons);
 
        printf("\n");
+
+       printf(COLOR_ACCENT "Swaps           : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", swapFormula);
+
+       printf(COLOR_ACCENT "                  = " COLOR_RESET);
+       printf(COLOR_TEXT "%ld\n", theoreticalSwaps);
 
        /*======================================================*
                      COMPLEXITY
        *======================================================*/
 
-       printf("---------- COMPLEXITY ----------\n");
+       printf("\n");
+
+       printf(COLOR_BORDER "---------- " COLOR_RESET);
+       printf(COLOR_LOGO STYLE_BOLD "COMPLEXITY" COLOR_RESET);
+       printf(COLOR_BORDER " ----------\n" COLOR_RESET);
 
        printf("\n");
 
-       printf("Best Case       : %s\n",bestCase);
-       printf("Average Case    : %s\n",averageCase);
-       printf("Worst Case      : %s\n",worstCase);
-       printf("Space           : %s\n",space);
+       printf(COLOR_ACCENT "Best Case       : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", bestCase);
+
+       printf(COLOR_ACCENT "Average Case    : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", averageCase);
+
+       printf(COLOR_ACCENT "Worst Case      : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", worstCase);
+
+       printf(COLOR_ACCENT "Space           : " COLOR_RESET);
+       printf(COLOR_TEXT "%s\n", space);
 
        printf("\n");
-       printf("========================================\n");
+
+       printf(COLOR_BORDER "====================================================\n");
+       printf(COLOR_RESET);
 }
 
 /*==========================================================*
@@ -139,13 +170,21 @@ void displaySearchCostAnalysis(struct Cost cost,
                                const char *space){
 
     printf("\n");
+
+    printf(COLOR_BORDER);
     printf("====================================================\n");
+    printf(COLOR_LOGO STYLE_BOLD);
     printf("          %s COST ANALYSIS\n", algorithm);
+    printf(COLOR_BORDER);
     printf("====================================================\n");
+    printf(COLOR_RESET);
 
     printf("\n");
-    printf("Algorithm       : %s\n", algorithm);
-    printf("Input Size      : %d\n", inputSize);
+    printf(COLOR_ACCENT "Algorithm       : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", algorithm);
+
+    printf(COLOR_ACCENT "Input Size      : " COLOR_RESET);
+    printf(COLOR_TEXT "%d\n", inputSize);
 
     printf("\n");
 
@@ -153,30 +192,64 @@ void displaySearchCostAnalysis(struct Cost cost,
                             ACTUAL COST
     *======================================================*/
 
-    printf("---------- ACTUAL COST ----------\n\n");
-    printf("Execution Time  : %.3f ms\n", cost.executionTime);
-    printf("Comparisons     : %ld\n", cost.comparisons);
+    printf("\n");
+
+    printf(COLOR_BORDER "---------- " COLOR_RESET);
+    printf(COLOR_LOGO STYLE_BOLD "ACTUAL COST" COLOR_RESET);
+    printf(COLOR_BORDER " ----------\n" COLOR_RESET);
+
+    printf("\n");
+
+    printf(COLOR_ACCENT "Execution Time  : " COLOR_RESET);
+    printf(COLOR_TEXT "%.3f ms\n", cost.executionTime);
+
+    printf(COLOR_ACCENT "Comparisons     : " COLOR_RESET);
+    printf(COLOR_TEXT "%ld\n", cost.comparisons);
 
     /*======================================================*
                          THEORETICAL COST
     *======================================================*/
 
     printf("\n");
-    printf("------ THEORETICAL COST ------\n\n");
-    printf("Comparisons     : %s\n", comparisonFormula);
-    printf("                  = %ld\n", theoreticalComparisons);
+
+    printf(COLOR_BORDER "-------- " COLOR_RESET);
+    printf(COLOR_LOGO STYLE_BOLD "THEORETICAL COST" COLOR_RESET);
+    printf(COLOR_BORDER " --------\n" COLOR_RESET);
+
+    printf("\n");
+
+    printf(COLOR_ACCENT "Comparisons     : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", comparisonFormula);
+
+    printf(COLOR_ACCENT "                  = " COLOR_RESET);
+    printf(COLOR_TEXT "%ld\n", theoreticalComparisons);
 
     /*======================================================*
                             COMPLEXITY
     *======================================================*/
 
     printf("\n");
-    printf("---------- COMPLEXITY ----------\n\n");
-    printf("Best Case       : %s\n", bestCase);
-    printf("Average Case    : %s\n", averageCase);
-    printf("Worst Case      : %s\n", worstCase);
-    printf("Space           : %s\n", space);
+
+    printf(COLOR_BORDER "---------- " COLOR_RESET);
+    printf(COLOR_LOGO STYLE_BOLD "COMPLEXITY" COLOR_RESET);
+    printf(COLOR_BORDER " ----------\n" COLOR_RESET);
 
     printf("\n");
-    printf("========================================\n");
+
+    printf(COLOR_ACCENT "Best Case       : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", bestCase);
+
+    printf(COLOR_ACCENT "Average Case    : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", averageCase);
+
+    printf(COLOR_ACCENT "Worst Case      : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", worstCase);
+
+    printf(COLOR_ACCENT "Space           : " COLOR_RESET);
+    printf(COLOR_TEXT "%s\n", space);
+
+    printf("\n");
+
+    printf(COLOR_BORDER "====================================================\n");
+    printf(COLOR_RESET);
 }

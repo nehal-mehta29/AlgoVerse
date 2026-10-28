@@ -49,7 +49,7 @@ void printDivider(const char *title){
 
     printf("==================== ");
 
-    printf(COLOR_LOGO);
+    printf(STYLE_BOLD COLOR_LOGO);
     printf("%s", title);
 
     printf(COLOR_BORDER);
