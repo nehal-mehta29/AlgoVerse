@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 #include "sorting/sortingUI.h"
 
@@ -161,8 +160,6 @@ void drawList(struct Node *head,
               struct Node *breakAfter,
               struct Node *breakBefore,
               int mode){
-
-    (void)breakAfter;
 
     struct Node *current = head;
 
