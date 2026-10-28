@@ -7,7 +7,6 @@
                 Linked List Display Modes
 ==========================================================*/
 
-#define LIST_NORMAL        0
 #define LIST_COMPARE       1
 #define LIST_BREAK         2
 #define LIST_RELINK        3
@@ -26,12 +25,6 @@ void printSortedListScreen(struct Node *head);
 // Displays the pass header
 void printPassHeader(const char *algorithm,
                      int pass);
-
-// Displays a visualization header
-void printVisualizationHeader(const char *title);
-
-// Displays sorting completed message
-void printSortingCompleted(void);
 
 /*==========================================================
                 Algorithm Event Functions
@@ -62,11 +55,6 @@ void drawList(struct Node *head,
               struct Node *breakAfter,
               struct Node *breakBefore,
               int mode);
-
-// Draws the swap sequence between two nodes in the linked list
-void drawSwapSequence(struct Node *head,
-                      struct Node *first,
-                      struct Node *second);
 
 // Draws the linked list inline according to the visualization mode
 void drawListInline(struct Node *head,

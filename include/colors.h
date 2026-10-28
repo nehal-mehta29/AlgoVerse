@@ -7,8 +7,6 @@
 #define COLOR_RESET        "\033[0m"
 
 #define STYLE_BOLD         "\033[1m"
-#define STYLE_DIM          "\033[2m"
-#define STYLE_UNDERLINE    "\033[4m"
 
 //========== Main UI Colors ==========
 
@@ -58,8 +56,5 @@
 
 /* Pointer / Address Highlight */
 #define COLOR_POINTER      "\033[38;2;173;216;230m"   // Soft Sky Blue
-
-/* Final Sorted Elements */
-#define COLOR_SORTED       "\033[38;2;216;180;248m"   // Lilac Bloom (#D8B4F8)
 
 #endif /* COLORS_H */

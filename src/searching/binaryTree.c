@@ -160,12 +160,12 @@ static TreeBox buildTreeBox(struct TreeNode *root,
 
         if(found){
             sprintf(nodeText,
-                    COLOR_ACTIVE "%d" COLOR_RESET,
+                    STYLE_BOLD COLOR_ACTIVE "%d" COLOR_RESET,
                     root->data);
         }
         else{
             sprintf(nodeText,
-                    COLOR_CURRENT "%d" COLOR_RESET,
+                    STYLE_BOLD COLOR_CURRENT "%d" COLOR_RESET,
                     root->data);
         }
     }

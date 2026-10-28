@@ -141,9 +141,8 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
         printf("\n");
 
         printf(COLOR_LOGO);
-        printf("BST SEARCH - STEP ");
 
-        printf(COLOR_CURRENT);
+        printf("BST SEARCH - STEP ");
         printf("%d\n", step);
 
         printf(COLOR_RESET);
@@ -157,7 +156,7 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
         printf(COLOR_LOGO);
         printf("Current Node  : ");
 
-        printf(COLOR_CURRENT);
+        printf(STYLE_BOLD COLOR_CURRENT);
         printf("%d\n", current->data);
 
         printf(COLOR_RESET);
@@ -168,12 +167,10 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
         printf("\n");
         printf(COLOR_LOGO);
         printf("======== BINARY SEARCH TREE - STEP ");
-        printf(COLOR_CURRENT);
         printf("%d", step);
-        printf(COLOR_LOGO);
         printf(" ========\n");
         printf(COLOR_RESET);
-        
+
         printf("\n");
 
         displayHighlightedTree(root, current, 0);

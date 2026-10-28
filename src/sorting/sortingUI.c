@@ -73,16 +73,6 @@ void printPassHeader(const char *algorithm, int pass){
 }
 
 /*==========================================================
-                Visualization Header
-==========================================================*/
-
-void printVisualizationHeader(const char *title){
-
-    printDivider(title);
-
-}
-
-/*==========================================================
                     Comparison
 ==========================================================*/
 
@@ -191,7 +181,7 @@ void drawList(struct Node *head,
         if(mode == LIST_COMPARE &&
             (current == first || current == second)){
 
-                printf(COLOR_CURRENT);
+                printf(STYLE_BOLD COLOR_CURRENT);
                 printf("[%d]", current->data);
                 printf(COLOR_RESET);
         }
@@ -199,7 +189,7 @@ void drawList(struct Node *head,
         else if(mode == LIST_SORTED &&
             (current == first || current == second)){
 
-            printf(COLOR_ACTIVE);
+            printf(STYLE_BOLD COLOR_ACTIVE);
             printf("[%d]", current->data);
             printf(COLOR_RESET);
         }
@@ -257,7 +247,7 @@ void drawListInline(struct Node *head,
         if(mode == LIST_COMPARE &&
            (current == first || current == second)){
 
-            printf(COLOR_CURRENT);
+            printf(STYLE_BOLD COLOR_CURRENT);
             printf("[%d]", current->data);
             printf(COLOR_RESET);
         }
@@ -304,48 +294,4 @@ void drawListInline(struct Node *head,
     }
 
     printf("NULL");
-}
-
-/*==========================================================*
-                    Swap Visualization
-*==========================================================*/
-
-void drawSwapSequence(struct Node *head,
-                      struct Node *first,
-                      struct Node *second){
-
-    /*======================================================*
-                    Break + Relink
-    *======================================================*/
-
-    drawListInline(head,
-                   first,
-                   second,
-                   LIST_BREAK);
-
-    printf(COLOR_LOGO);
-    printf("  |  ");
-    printf(COLOR_RESET);
-
-    drawListInline(head,
-                   first,
-                   second,
-                   LIST_RELINK);
-
-    printf("\n");
-}
-
-/*==========================================================
-                Sorting Completed
-==========================================================*/
-
-void printSortingCompleted(void){
-
-    printf("\n");
-
-    printf(COLOR_SUCCESS);
-    printf("Sorting Completed Successfully!\n");
-
-    printf(COLOR_RESET);
-
 }

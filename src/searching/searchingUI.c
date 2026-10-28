@@ -128,11 +128,11 @@ void drawArray(const int arr[],
 
     for(i = 0; i < size; i++){
         if(mode == ARRAY_FOUND && i == current){
-            printCell(arr[i], COLOR_ACTIVE);
+            printCell(arr[i],STYLE_BOLD COLOR_ACTIVE);
         }
 
         else if(mode == ARRAY_COMPARE && (i == current || i == secondary)){
-            printCell(arr[i], COLOR_CURRENT);
+            printCell(arr[i], STYLE_BOLD COLOR_CURRENT);
         }
 
         else if(mode == ARRAY_DISCARDED && (i < start || i > end)){
@@ -166,7 +166,7 @@ void drawArray(const int arr[],
 
         if(i == current){
 
-            printf(COLOR_CURRENT);
+            printf(STYLE_BOLD COLOR_CURRENT);
             printf("  ^   ");
             printf(COLOR_RESET);
         }
@@ -215,13 +215,13 @@ void printSearchComparison(int first,
     printf(COLOR_LOGO);
     printf("Comparing ");
 
-    printf(COLOR_CURRENT);
+    printf(STYLE_BOLD COLOR_CURRENT);
     printf("%d", first);
 
     printf(COLOR_LOGO);
     printf(" %s ", relation);
 
-    printf(COLOR_CURRENT);
+    printf(STYLE_BOLD COLOR_CURRENT);
     printf("%d\n", second);
 
     printf(COLOR_RESET);
