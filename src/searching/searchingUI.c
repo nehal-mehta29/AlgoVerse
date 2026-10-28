@@ -140,7 +140,7 @@ void drawArray(const int arr[],
         }
 
         else{
-            printCell(arr[i], COLOR_NUMBER);
+            printCell(arr[i], COLOR_ELEMENT);
         }
     }
 

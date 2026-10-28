@@ -165,7 +165,7 @@ static TreeBox buildTreeBox(struct TreeNode *root,
         }
         else{
             sprintf(nodeText,
-                    COLOR_ACCENT "%d" COLOR_RESET,
+                    COLOR_CURRENT "%d" COLOR_RESET,
                     root->data);
         }
     }
@@ -397,62 +397,6 @@ void displayHighlightedTree(struct TreeNode *root,
     }
 
     printf("\n");
-}
-
-/*==========================================================*
-                Display BST During Search
-*==========================================================*/
-
-void displaySearchTree(struct TreeNode *root,
-                       struct TreeNode *current,
-                       int found,
-                       int step){
-
-    if(root == NULL){
-        return;
-    }
-
-    printf("\n");
-
-    //Display step number
-
-    printf(COLOR_LOGO);
-    printf("======== BINARY SEARCH TREE - STEP ");
-
-    printf(COLOR_CURRENT);
-    printf("%d", step);
-
-    printf(COLOR_LOGO);
-    printf(" ========\n");
-
-    printf(COLOR_RESET);
-
-    printf("\n");
-
-    // Display tree
-
-    displayHighlightedTree(root, current, found);
-
-    //Display which node is being compared
-
-    if(current != NULL){
-
-        if(found){
-
-            printf(COLOR_SUCCESS);
-            printf("\nFound Element : %d\n",
-                   current->data);
-            printf(COLOR_RESET);
-        }
-
-        else{
-
-            printf(COLOR_CURRENT);
-            printf("\nComparing Element : %d\n",
-                   current->data);
-            printf(COLOR_RESET);
-        }
-    }
 }
 
 /*==========================================================*

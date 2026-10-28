@@ -23,13 +23,13 @@ void splashScreen(void){
     printf("\n");
 
     printf(COLOR_TEXT);
-    printf("        Interactive Data Structure & Algorithm Learning System\n");
+    printf("             Visualize * Analyze * Understand\n");
     printf(COLOR_RESET);
 
     printf("\n");
 
     printf(COLOR_ACCENT);
-    printf("                  Visualize * Analyze * Understand\n");
+    printf("    Interactive Data Structure & Algorithm Learning System\n");
     printf(COLOR_RESET);
 
     printf("\n\n");

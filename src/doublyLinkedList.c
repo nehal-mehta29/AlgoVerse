@@ -80,7 +80,7 @@ void displayList(struct Node *head){
 
         printf("<--> ");
 
-        printf(COLOR_NUMBER);
+        printf(COLOR_ELEMENT);
         printf("[%d]", head->data);
 
         printf(COLOR_TEXT);

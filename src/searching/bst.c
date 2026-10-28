@@ -165,10 +165,18 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
         /*==================================================*
                         Display Current Step
         *==================================================*/
-
+        printf("\n");
+        printf(COLOR_LOGO);
+        printf("======== BINARY SEARCH TREE - STEP ");
+        printf(COLOR_CURRENT);
+        printf("%d", step);
+        printf(COLOR_LOGO);
+        printf(" ========\n");
+        printf(COLOR_RESET);
+        
         printf("\n");
 
-        displaySearchTree(root, current, 0, step);
+        displayHighlightedTree(root, current, 0);
 
         delayScreen(800);
 
@@ -195,14 +203,9 @@ struct TreeNode *searchBST(struct TreeNode *root, int key, struct Cost *cost){
             /*==============================================*
                         Display Found Element
             *==============================================*/
-
             printf("\n");
 
-            displaySearchTree(root, current, 1, step);
-
-            delayScreen(800);
-
-            printf("\n");
+            displayHighlightedTree(root, current, 1);
 
             printf(COLOR_SUCCESS);
             printf("Search Successful!\n");

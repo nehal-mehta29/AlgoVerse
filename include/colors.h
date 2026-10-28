@@ -1,3 +1,4 @@
+
 #ifndef COLORS_H
 #define COLORS_H
 
@@ -18,7 +19,7 @@
 #define COLOR_BREADCRUMB   "\033[38;2;142;138;159m"   // Muted Lavender (#8E8A9F)
 
 /* Menu Numbers */
-#define COLOR_NUMBER       "\033[38;2;244;162;97m"    // Peach Apricot (#F4A261)
+#define COLOR_NUMBER       "\033[38;2;244;162;97m"   // Peach Apricot (#F4A261)
 
 /* General Text */
 #define COLOR_TEXT         "\033[38;2;240;244;241m"   // Soft Cream (#F0F4F1)
@@ -43,11 +44,15 @@
 
 //========== Visualization Colors ==========
 
+/*Elements*/
+#define COLOR_ELEMENT      "\033[38;2;209;184;173m"   // Dusty Blush (#D1B8AD)
+
 /* Current Node Being Processed */
-#define COLOR_CURRENT      "\033[38;2;102;217;255m"   // Bright Cyan
+#define COLOR_CURRENT      "\033[38;2;255;77;222m"    // Neon Magenta (#FF4DDE)
 
 /* Swapped / Relinked Node */
-#define COLOR_ACTIVE       "\033[38;2;0;255;127m"    // Bright Spring Green
+#define COLOR_ACTIVE       "\033[38;2;0;255;127m"     // Bright Spring Green
+
 /* Broken Link Marker */
 #define COLOR_BREAK        "\033[31m"                 // Standard Red
 
@@ -55,6 +60,6 @@
 #define COLOR_POINTER      "\033[38;2;173;216;230m"   // Soft Sky Blue
 
 /* Final Sorted Elements */
-#define COLOR_SORTED       "\033[38;2;216;180;248m"   // Lilac Bloom
+#define COLOR_SORTED       "\033[38;2;216;180;248m"   // Lilac Bloom (#D8B4F8)
 
 #endif /* COLORS_H */

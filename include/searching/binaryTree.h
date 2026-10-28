@@ -48,15 +48,6 @@ void displayHighlightedTree(struct TreeNode *root,
                              int found);
 
 /*==========================================================*
-                Display BST During Search
-*==========================================================*/
-
-void displaySearchTree(struct TreeNode *root,
-                       struct TreeNode *current,
-                       int found,
-                       int step );
-
-/*==========================================================*
                         Free BST
 *==========================================================*/
 

@@ -206,7 +206,7 @@ void drawList(struct Node *head,
 
         else{
 
-            printf(COLOR_NUMBER);
+            printf(COLOR_ELEMENT);
             printf("[%d]", current->data);
             printf(COLOR_RESET);
         }
@@ -273,7 +273,7 @@ void drawListInline(struct Node *head,
 
         else{
 
-            printf(COLOR_NUMBER);
+            printf(COLOR_ELEMENT);
             printf("[%d]", current->data);
             printf(COLOR_RESET);
         }
