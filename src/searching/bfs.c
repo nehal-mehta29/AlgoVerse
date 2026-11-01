@@ -100,10 +100,6 @@ void bfsPage(void){
                         Cost Analysis
     *======================================================*/
 
-    clearScreen();
-
-    printBreadcrumb("Home > Searching Algorithms > Breadth First Search > Cost Analysis");
-
     long theoreticalComparisons = (long)size;
 
     displaySearchCostAnalysis(cost,
